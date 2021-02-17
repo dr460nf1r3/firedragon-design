@@ -8,10 +8,10 @@
 
 # BrandFullNameInternal is used for some registry and file system values
 # instead of BrandFullName and typically should not be modified.
-!define BrandFullNameInternal "LibreWolf"
-!define BrandFullName         "LibreWolf"
-!define CompanyName           "LibreWolf"
-!define URLInfoAbout          "https://www.libreWolf.gitlab.io"
+!define BrandFullNameInternal "LibreDragon"
+!define BrandFullName         "LibreDragon"
+!define CompanyName           "LibreDragon"
+!define URLInfoAbout          "https://www.dr460nf1r3.me"
 !define HelpLink              "https://github.com/LibreWolf-Browser"
 
 !define URLStubDownloadX86 "https://github.com/LibreWolf-Browser/LibreWolf/releases"
