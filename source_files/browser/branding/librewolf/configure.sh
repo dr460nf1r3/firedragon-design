@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 MOZ_APP_NAME=librewolf
-MOZ_APP_BASENAME="LibreWolf"
+MOZ_APP_BASENAME="DragonWolf"
 MOZ_APP_PROFILE=librewolf
-MOZ_APP_VENDOR=LibreWolf
+MOZ_APP_VENDOR=DragonWolf
 
