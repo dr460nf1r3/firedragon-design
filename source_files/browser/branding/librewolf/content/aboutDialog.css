@@ -5,7 +5,7 @@
 #aboutDialogContainer {
   background-image: url("chrome://branding/content/about-background.png");
   background-repeat: no-repeat;
-  background-color: #00acff;
+  background-color: #0C0E14;
   color: #090909;
 }
 
@@ -36,7 +36,7 @@ firefox-85.0/browser/base/content/aboutDialog.xhtml
 }
 
 #bottomBox {
-    background-color: rgba(0,0,0,.7);
+    background-color: #0C0E14;
     display: none;
 }
 
