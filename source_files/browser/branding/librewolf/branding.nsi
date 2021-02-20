@@ -8,9 +8,9 @@
 
 # BrandFullNameInternal is used for some registry and file system values
 # instead of BrandFullName and typically should not be modified.
-!define BrandFullNameInternal "LibreWolf"
-!define BrandFullName         "LibreWolf"
-!define CompanyName           "LibreWolf"
+!define BrandFullNameInternal "DragonWolf"
+!define BrandFullName         "DragonWolf"
+!define CompanyName           "DragonWolf"
 !define URLInfoAbout          "https://www.libreWolf.gitlab.io"
 !define HelpLink              "https://github.com/LibreWolf-Browser"
 
