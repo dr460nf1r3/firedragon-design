@@ -2,8 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-MOZ_APP_NAME=dragonwolf
-MOZ_APP_BASENAME="DragonWolf"
-MOZ_APP_PROFILE=dragonwolf
-MOZ_APP_VENDOR=DragonWolf
+MOZ_APP_NAME=firedragon
+MOZ_APP_BASENAME="FireDragon"
+MOZ_APP_PROFILE=firedragon
+MOZ_APP_VENDOR=FireDragon
 

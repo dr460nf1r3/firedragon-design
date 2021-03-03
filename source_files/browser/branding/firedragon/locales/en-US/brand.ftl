@@ -12,11 +12,11 @@
 ##
 ## Reference: https://www.mozilla.org/styleguide/communications/translation/
 
--brand-shorter-name = DragonWolf
--brand-short-name = DragonWolf
--brand-full-name = DragonWolf
+-brand-shorter-name = FireDragon
+-brand-short-name = FireDragon
+-brand-full-name = FireDragon
 # This brand name can be used in messages where the product name needs to
 # remain unchanged across different versions (Nightly, Beta, etc.).
--brand-product-name = DragonWolf
--vendor-short-name = DragonWolf
+-brand-product-name = FireDragon
+-vendor-short-name = FireDragon
 trademarkInfo = { " " }
