@@ -1,12 +1,8 @@
 diff --git a/browser/components/urlbar/UrlbarInput.jsm b/browser/components/urlbar/UrlbarInput.jsm
+index 4c42071..12323dd 100644
 --- a/browser/components/urlbar/UrlbarInput.jsm
 +++ b/browser/components/urlbar/UrlbarInput.jsm
-@@ -1699,23 +1699,23 @@ class UrlbarInput {
-       this.removeAttribute("breakout-extend-disabled");
-     }
- 
-     this._toolbar.setAttribute("urlbar-exceeds-toolbar-bounds", "true");
-     this.setAttribute("breakout-extend", "true");
+@@ -1712,13 +1712,13 @@ class UrlbarInput {
  
      // Enable the animation only after the first extend call to ensure it
      // doesn't run when opening a new window.
@@ -27,19 +23,11 @@ diff --git a/browser/components/urlbar/UrlbarInput.jsm b/browser/components/urlb
    }
  
    endLayoutExtend() {
-     // If reduce motion is enabled, we want to collapse the Urlbar here so the
-     // user sees only sees two states: not expanded, and expanded with the view
-     // open.
-     if (!this.hasAttribute("breakout-extend") || this.view.isOpen) {
-       return;
 diff --git a/browser/themes/shared/urlbar-searchbar.inc.css b/browser/themes/shared/urlbar-searchbar.inc.css
+index e80aaf6..6ec0961 100644
 --- a/browser/themes/shared/urlbar-searchbar.inc.css
 +++ b/browser/themes/shared/urlbar-searchbar.inc.css
-@@ -1,16 +1,16 @@
- %if 0
- /* This Source Code Form is subject to the terms of the Mozilla Public
-  * License, v. 2.0. If a copy of the MPL was not distributed with this
-  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+@@ -5,7 +5,7 @@
  %endif
  
  %define fieldHoverBorderColor hsla(240,5%,5%,.35)
@@ -48,17 +36,7 @@ diff --git a/browser/themes/shared/urlbar-searchbar.inc.css b/browser/themes/sha
  %define urlbarSearchButtonWidth calc(16px + 2 * var(--urlbar-icon-padding))
  
  :root {
-   --toolbar-field-border-color: hsla(240,5%,5%,.25);
- }
- 
- @media not (-moz-proton) {
- :root {
-@@ -268,50 +268,50 @@
- #urlbar[breakout][breakout-extend-disabled][open] {
-   /* The z-index needs to be big enough to trump other positioned UI pieces
-      that we want to overlay. 3 is used in the tab bar. */
-   z-index: 3;
-   height: auto;
+@@ -279,40 +279,40 @@
  }
  
  #urlbar[breakout][breakout-extend] {
@@ -111,17 +89,7 @@ diff --git a/browser/themes/shared/urlbar-searchbar.inc.css b/browser/themes/sha
  }
  } /*** END proton ***/
  
- #urlbar.searchButton[breakout][breakout-extend] > #urlbar-input-container > #urlbar-search-button {
-   fill: currentColor;
-   fill-opacity: .6;
- }
- 
-@@ -320,17 +320,17 @@
-     transform: scaleX(.99) scaleY(.95);
-   }
-   100% {
-     transform: scale(1.0);
-   }
+@@ -331,7 +331,7 @@
  }
  
  #urlbar[breakout][breakout-extend] > #urlbar-background {
@@ -130,20 +98,11 @@ diff --git a/browser/themes/shared/urlbar-searchbar.inc.css b/browser/themes/sha
    animation-duration: 0s;
    animation-timing-function: var(--animation-easing-function);
  }
- 
- @media (prefers-reduced-motion: no-preference) {
-   #urlbar[breakout][breakout-extend][breakout-extend-animate] > #urlbar-background {
-     animation-duration: 150ms;
-   }
 diff --git a/browser/themes/shared/urlbarView.inc.css b/browser/themes/shared/urlbarView.inc.css
+index d2bb269..0d47466 100644
 --- a/browser/themes/shared/urlbarView.inc.css
 +++ b/browser/themes/shared/urlbarView.inc.css
-@@ -82,26 +82,26 @@
- 
- .urlbarView {
-   /* Don't handle window drag events in case we are overlapping a toolbar */
-   -moz-window-dragging: no-drag;
- 
+@@ -73,16 +73,16 @@
    display: block;
    text-shadow: none;
    overflow: clip;
@@ -164,48 +123,25 @@ diff --git a/browser/themes/shared/urlbarView.inc.css b/browser/themes/shared/ur
  }
  /* If the view is open, offset the toolbar overlap so the view's top border
     aligns with the toolbar. */
- #urlbar[open] > .urlbarView {
-   margin-block-start: -@urlbarBreakoutExtend@;
- }
- } /*** END !proton ***/
- 
-@@ -123,27 +123,27 @@
-   padding-block: 0;
- }
- 
+@@ -112,7 +112,7 @@
  .urlbarView-row {
-   display: flex;
-   flex-wrap: nowrap;
    fill: currentColor;
-   fill-opacity: .6;
+   fill-opacity: var(--urlbar-icon-fill-opacity);
 -  padding-block: 3px;
-+  padding-block: 0px;
++  padding-block: 0;
  }
  
- :root[uidensity=compact] .urlbarView-row {
-   padding-block: 2px;
+ @media not (-moz-proton) {
+@@ -127,7 +127,7 @@
  }
  
- @media (-moz-proton) {
  :root:not([uidensity=compact]) .urlbarView-row:not([type=tip], [type=dynamic]) {
 -  min-height: 32px;
--  padding-block: 4px;
-+  min-height: 0px; /* todo: check this */
-+  padding-block: 0px;
++  min-height: 0;
  }
  } /*** END proton ***/
  
- .urlbarView-row-inner {
-   display: flex;
-   flex-wrap: nowrap;
-   flex-grow: 1;
-   flex-shrink: 1;
-@@ -288,16 +288,17 @@
-   width: @urlbarViewFaviconWidth@;
-   height: @urlbarViewFaviconWidth@;
-   margin-inline-end: calc(@urlbarViewIconMarginEnd@);
-   background-repeat: no-repeat;
-   background-size: contain;
+@@ -295,6 +295,7 @@
    object-fit: contain;
    flex-shrink: 0;
    -moz-context-properties: fill, fill-opacity;
@@ -213,17 +149,7 @@ diff --git a/browser/themes/shared/urlbarView.inc.css b/browser/themes/shared/ur
  }
  
  @media not (-moz-proton) {
- .urlbarView-favicon {
-   /* 2px is from identity-block.inc.css */
-   margin-inline-end: calc(var(--urlbar-icon-padding) / 2 + var(--identity-box-margin-inline) + 2px);
- }
- } /*** END !proton ***/
-@@ -321,20 +322,20 @@
-   color: var(--urlbar-popup-url-color);
-   -moz-context-properties: fill;
- }
- 
- /* Type icon */
+@@ -328,10 +329,10 @@
  
  .urlbarView-type-icon {
    position: absolute;
@@ -232,14 +158,9 @@ diff --git a/browser/themes/shared/urlbarView.inc.css b/browser/themes/shared/ur
 -  margin-bottom: -4px;
 -  margin-inline-start: 8px;
 +  width: 16px;
-+  height: 16px;;
++  height: 16px;
 +  margin-bottom: 0;
 +  margin-inline-start: 0;
    align-self: end;
    background-repeat: no-repeat;
    background-size: contain;
-   -moz-context-properties: fill, stroke;
- }
- 
- /* Favicon badges have this priority: pinned > bookmark. */
- 
