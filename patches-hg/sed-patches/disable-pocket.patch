@@ -2,7 +2,7 @@ diff --git a/browser/components/BrowserGlue.jsm b/browser/components/BrowserGlue
 index 81de0fb201..163b4843e4 100644
 --- a/browser/components/BrowserGlue.jsm
 +++ b/browser/components/BrowserGlue.jsm
-@@ -1380,8 +1380,6 @@ BrowserGlue.prototype = {
+@@ -1375,8 +1375,6 @@ BrowserGlue.prototype = {
        Normandy.init();
      }
  
@@ -23,3 +23,16 @@ index d16b27b1ea..a119166fa5 100644
      "preferences",
      "privatebrowsing",
      "prompts",
+diff --git a/browser/base/content/browser.js b/browser/base/content/browser.js
+index 16168e5..857a968 100644
+--- a/browser/base/content/browser.js
++++ b/browser/base/content/browser.js
+@@ -5246,8 +5246,6 @@ var XULBrowserWindow = {
+ 
+     SafeBrowsingNotificationBox.onLocationChange(aLocationURI);
+ 
+-    SaveToPocket.onLocationChange(window);
+-
+     UrlbarProviderSearchTips.onLocationChange(
+       window,
+       aLocationURI,

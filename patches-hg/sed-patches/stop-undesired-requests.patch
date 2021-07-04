@@ -2,7 +2,7 @@ diff --git a/browser/components/newtab/data/content/activity-stream.bundle.js b/
 index 92f0652aec..696a99f7ef 100644
 --- a/browser/components/newtab/data/content/activity-stream.bundle.js
 +++ b/browser/components/newtab/data/content/activity-stream.bundle.js
-@@ -1828,7 +1828,7 @@ class ASRouterAdminInner extends react__WEBPACK_IMPORTED_MODULE_3___default.a.Pu
+@@ -1841,7 +1841,7 @@ class ASRouterAdminInner extends react__WEBPACK_IMPORTED_MODULE_3___default.a.Pu
          label = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", null, "remote settings (", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
            className: "providerUrl",
            target: "_blank",
@@ -15,7 +15,7 @@ diff --git a/modules/libpref/init/all.js b/modules/libpref/init/all.js
 index c7cde8917c..b398a22064 100644
 --- a/modules/libpref/init/all.js
 +++ b/modules/libpref/init/all.js
-@@ -2187,7 +2187,7 @@ pref("security.cert_pinning.hpkp.enabled", false);
+@@ -2243,7 +2243,7 @@ pref("security.cert_pinning.hpkp.enabled", false);
  // Remote settings preferences
  // Note: if you change this, make sure to also review security.onecrl.maximum_staleness_in_seconds
  pref("services.settings.poll_interval", 86400); // 24H

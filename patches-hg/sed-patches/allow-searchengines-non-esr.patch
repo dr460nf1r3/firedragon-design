@@ -2,7 +2,7 @@ diff --git a/browser/components/enterprisepolicies/schemas/policies-schema.json 
 index d436cf1ca1..ecd6e53b9e 100644
 --- a/browser/components/enterprisepolicies/schemas/policies-schema.json
 +++ b/browser/components/enterprisepolicies/schemas/policies-schema.json
-@@ -1104,7 +1104,7 @@
+@@ -1074,7 +1074,7 @@
      },
  
      "SearchEngines": {
