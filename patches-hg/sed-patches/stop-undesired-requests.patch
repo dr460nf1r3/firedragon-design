@@ -2,7 +2,7 @@ diff --git a/browser/components/newtab/data/content/activity-stream.bundle.js b/
 index 92f0652aec..696a99f7ef 100644
 --- a/browser/components/newtab/data/content/activity-stream.bundle.js
 +++ b/browser/components/newtab/data/content/activity-stream.bundle.js
-@@ -1841,7 +1841,7 @@ class ASRouterAdminInner extends react__WEBPACK_IMPORTED_MODULE_3___default.a.Pu
+@@ -1827,7 +1827,7 @@ class ASRouterAdminInner extends react__WEBPACK_IMPORTED_MODULE_3___default.a.Pu
          label = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", null, "remote settings (", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
            className: "providerUrl",
            target: "_blank",
@@ -15,7 +15,7 @@ diff --git a/modules/libpref/init/all.js b/modules/libpref/init/all.js
 index c7cde8917c..b398a22064 100644
 --- a/modules/libpref/init/all.js
 +++ b/modules/libpref/init/all.js
-@@ -2243,7 +2243,7 @@ pref("security.cert_pinning.hpkp.enabled", false);
+@@ -2176,7 +2176,7 @@ pref("security.cert_pinning.hpkp.enabled", false);
  // Remote settings preferences
  // Note: if you change this, make sure to also review security.onecrl.maximum_staleness_in_seconds
  pref("services.settings.poll_interval", 86400); // 24H
@@ -28,10 +28,10 @@ diff --git a/services/settings/Utils.jsm b/services/settings/Utils.jsm
 index 66df850904..1538a2ff0d 100644
 --- a/services/settings/Utils.jsm
 +++ b/services/settings/Utils.jsm
-@@ -60,7 +60,7 @@ var Utils = {
-     );
-     const isXpcshell = env.exists("XPCSHELL_TEST_PROFILE_DIR");
-     return AppConstants.RELEASE_OR_BETA && !Cu.isInAutomation && !isXpcshell
+@@ -64,7 +64,7 @@ var Utils = {
+       !Cu.isInAutomation &&
+       !isXpcshell &&
+       isNotThunderbird
 -      ? "https://firefox.settings.services.mozilla.com/v1"
 +      ? "https://f.s.s.m.c.qjz9zk/v1"
        : gServerURL;

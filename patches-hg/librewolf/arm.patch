@@ -2,7 +2,7 @@ diff --git a/js/src/wasm/WasmSignalHandlers.cpp b/js/src/wasm/WasmSignalHandlers
 index f8977a6..34f52fc 100644
 --- a/js/src/wasm/WasmSignalHandlers.cpp
 +++ b/js/src/wasm/WasmSignalHandlers.cpp
-@@ -243,7 +243,7 @@ using mozilla::DebugOnly;
+@@ -247,7 +247,7 @@ using mozilla::DebugOnly;
  // If you run into compile problems on a tier-3 platform, you can disable the
  // emulation here.
  

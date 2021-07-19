@@ -2,7 +2,7 @@ diff --git a/dom/base/Document.cpp b/dom/base/Document.cpp
 index ce2cbca..60fda48 100644
 --- a/dom/base/Document.cpp
 +++ b/dom/base/Document.cpp
-@@ -17084,6 +17084,7 @@ void Document::RemoveToplevelLoadingDocument(Document* aDoc) {
+@@ -17218,6 +17218,7 @@ void Document::RemoveToplevelLoadingDocument(Document* aDoc) {
  StylePrefersColorScheme Document::PrefersColorScheme(
      IgnoreRFP aIgnoreRFP) const {
    if (aIgnoreRFP == IgnoreRFP::No &&
@@ -14,10 +14,10 @@ diff --git a/modules/libref/init/StaticPrefList.yaml b/modules/libref/init/Stati
 index b4b2dc7..e65d43f 100644
 --- a/modules/libpref/init/StaticPrefList.yaml
 +++ b/modules/libpref/init/StaticPrefList.yaml
-@@ -9863,6 +9863,12 @@
+@@ -10233,6 +10233,12 @@
    value: false
    mirror: always
- 
+
 +# Allows overriding RFP for only the dark/light pref
 +- name: privacy.override_rfp_for_color_scheme
 +  type: bool
