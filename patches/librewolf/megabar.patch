@@ -36,50 +36,16 @@ index e80aaf6..6ec0961 100644
  %define urlbarSearchButtonWidth calc(16px + 2 * var(--urlbar-icon-padding))
  
  :root {
-@@ -279,40 +279,40 @@
- }
+@@ -246,14 +246,14 @@
  
- #urlbar[breakout][breakout-extend] {
--  top: -@urlbarBreakoutExtend@;
--  left: calc(-@urlbarMarginInline@ - @urlbarBreakoutExtend@);
--  width: calc(100% + 2 * @urlbarMarginInline@ + 2 * @urlbarBreakoutExtend@);
-+  top: 0;
-+  left: 0;
-+  width: 100%;
- }
- 
- @media (-moz-proton) {
  #urlbar[breakout][breakout-extend] {
    top: 0;
 -  left: -@urlbarMarginInline@;
 -  width: calc(100% + 2 * @urlbarMarginInline@);
 +  left: 0;
-+  width: 100%;
- }
- } /*** END proton ***/
- 
- @media not (-moz-proton) {
- #urlbar[breakout][breakout-extend] > #urlbar-background {
--  box-shadow: 0 3px 8px 0 rgba(0,0,0,.15)
-+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
++  width: 100;
  }
  
- #urlbar[breakout][breakout-extend][open] > #urlbar-background {
--  box-shadow: 0 5px 18px rgba(0,0,0,.2);
-+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
- }
- } /*** END !proton ***/
- 
- #urlbar[breakout][breakout-extend] > #urlbar-input-container {
--  height: calc(var(--urlbar-toolbar-height) + 2 * @urlbarBreakoutExtend@);
--  padding-block: calc(@urlbarBreakoutExtend@ + (var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2);
--  padding-inline: calc(@urlbarMarginInline@ + @urlbarBreakoutExtend@);
-+  height: var(--urlbar-toolbar-height);
-+  padding-block: 0;
-+  padding-inline: 0;
- }
- 
- @media (-moz-proton) {
  #urlbar[breakout][breakout-extend] > #urlbar-input-container {
    height: var(--urlbar-toolbar-height);
 -  padding-block: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2 + var(--urlbar-container-padding));
@@ -87,9 +53,9 @@ index e80aaf6..6ec0961 100644
 +  padding-block: 0;
 +  padding-inline: 0;
  }
- } /*** END proton ***/
  
-@@ -331,7 +331,7 @@
+ #urlbar.searchButton[breakout][breakout-extend] > #urlbar-input-container > #urlbar-search-button {
+@@ -271,7 +271,7 @@
  }
  
  #urlbar[breakout][breakout-extend] > #urlbar-background {
@@ -102,54 +68,40 @@ diff --git a/browser/themes/shared/urlbarView.inc.css b/browser/themes/shared/ur
 index d2bb269..0d47466 100644
 --- a/browser/themes/shared/urlbarView.inc.css
 +++ b/browser/themes/shared/urlbarView.inc.css
-@@ -73,16 +73,16 @@
+@@ -56,8 +56,8 @@
    display: block;
    text-shadow: none;
    overflow: clip;
 -  margin-inline: calc(5px + var(--urlbar-container-padding));
 -  width: calc(100% - 2 * (5px + var(--urlbar-container-padding)));
 +  margin-inline: 0;
-+  width: 100%
++  width: 100%;
    /* Match urlbar-background's border. */
    border-inline: 1px solid transparent;
  }
- 
- @media not (-moz-proton) {
- .urlbarView {
--  margin-inline: calc(4px + var(--identity-box-margin-inline));
--  width: calc(100% - 2 * (4px + var(--identity-box-margin-inline)));
-+  margin-inline: 0;
-+  width: 100%;
- }
- /* If the view is open, offset the toolbar overlap so the view's top border
-    aligns with the toolbar. */
-@@ -112,7 +112,7 @@
+@@ -83,11 +83,11 @@
  .urlbarView-row {
    fill: currentColor;
    fill-opacity: var(--urlbar-icon-fill-opacity);
--  padding-block: 3px;
-+  padding-block: 0;
+-  padding-block: 2px;
++  padding-block: 0px;
  }
- 
- @media not (-moz-proton) {
-@@ -127,7 +127,7 @@
- }
- 
+
  :root:not([uidensity=compact]) .urlbarView-row:not([type=tip], [type=dynamic]) {
 -  min-height: 32px;
-+  min-height: 0;
++  min-height: 0px;
  }
- } /*** END proton ***/
  
-@@ -295,6 +295,7 @@
+ :root[uidensity=touch] .urlbarView-row:not([type=tip], [type=dynamic]) {
+@@ -241,6 +241,7 @@
    object-fit: contain;
    flex-shrink: 0;
    -moz-context-properties: fill, fill-opacity;
 +  margin-inline-start: 20px;
  }
  
- @media not (-moz-proton) {
-@@ -328,10 +329,10 @@
+
+@@ -268,10 +269,10 @@
  
  .urlbarView-type-icon {
    position: absolute;
@@ -159,8 +111,9 @@ index d2bb269..0d47466 100644
 -  margin-inline-start: 8px;
 +  width: 16px;
 +  height: 16px;
-+  margin-bottom: 0;
-+  margin-inline-start: 0;
++  margin-bottom: 0px;
++  margin-inline-start: 0px;
    align-self: end;
    background-repeat: no-repeat;
    background-size: contain;
+
