@@ -5,15 +5,15 @@ index f8a1764..ebf4206 100644
 @@ -54,10 +54,11 @@
        <div class="info">
          <h1 id="info-title" data-l10n-id="about-private-browsing-info-title"></h1>
-         <p id="info-body" data-l10n-id="about-private-browsing-info-description"></p>
--        <a id="private-browsing-myths" data-l10n-id="about-private-browsing-info-myths"></a>
+         <p id="info-body" data-l10n-id="about-private-browsing-info-description-simplified"></p>
+-        <a id="private-browsing-myths" data-l10n-id="about-private-browsing-learn-more-link"></a>
 +<!--        <a id="private-browsing-myths" data-l10n-id="about-private-browsing-info-myths"></a> -->
        </div>
      </div>
- 
+
 +    <!--
      <div class="promo">
-       <div class="promo-image-large">
+       <div class="promo-image-small">
          <img src="" alt="" />
 @@ -73,5 +74,6 @@
          </div>
