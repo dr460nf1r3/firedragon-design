@@ -5,4 +5,4 @@
  browser-languages-available-label = Available languages
  
 -browser-languages-error = { -brand-short-name } can’t update your languages right now. Check that you are connected to the internet or try again.
-+browser-languages-error = { -brand-short-name } forces your language to en-US in order to protect your privacy. If you still want to make this change, check our FAQ.
++browser-languages-error = { -brand-short-name } forces your language to en-US in order to protect your privacy. If you still want to make this change, check the Librewolf FAQ.
