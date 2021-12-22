@@ -1,0 +1,16 @@
+--- a/build/mach_initialize.py
++++ b/build/mach_initialize.py
+@@ -207,12 +207,7 @@
+             else "MACH_USE_SYSTEM_PYTHON"
+         )
+ 
+-        has_pip = (
+-            subprocess.run(
+-                [sys.executable, "-c", "import pip"], stderr=subprocess.DEVNULL
+-            ).returncode
+-            == 0
+-        )
++        has_pip = False
+         # There are environments in CI that aren't prepared to provide any Mach dependency
+         # packages. Changing this is a nontrivial endeavour, so guard against having
+         # non-optional Mach requirements.
