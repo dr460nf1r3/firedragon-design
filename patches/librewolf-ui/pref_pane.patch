@@ -532,12 +532,12 @@ index d276f7a..39f3660 100644
 +## LibreWolf preferences
 +
 +# Sidebar
-+pane-librewolf-title = LibreWolf
++pane-librewolf-title = FireDragon
 +category-librewolf =
 +    .tooltiptext = about:config changes, logically grouped and easily accessible
 +
 +# Main content
-+librewolf-header = Librewolf Preferences
++librewolf-header = FireDragon Preferences
 +librewolf-warning-title = Heads up!
 +librewolf-warning-description = We carefully choose default settings to focus on privacy and security. When changing these settings, read the descriptions to understand the implications of those changes.
 +
