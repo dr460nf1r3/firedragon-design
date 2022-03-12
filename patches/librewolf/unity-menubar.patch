@@ -99,7 +99,7 @@ index 2a57bcdc9f..c4e13b30ed 100644
      if (!toolbar.hasAttribute("toolbarname")) {
        continue;
      }
- 
+
 +    if (shellShowingMenubar && toolbar.id == "toolbar-menubar") {
 +      continue;
 +    }
@@ -126,7 +126,7 @@ index 152d0e028d..f680479f55 100644
 @@ -207,6 +207,10 @@ void XULPopupElement::GetState(nsString& aState) {
    // set this here in case there's no frame for the popup
    aState.AssignLiteral("closed");
- 
+
 +#ifdef MOZ_WIDGET_GTK
 +  nsAutoString nativeState;
 +#endif
@@ -144,16 +144,16 @@ index 152d0e028d..f680479f55 100644
 +  }
 +#endif
  }
- 
+
  nsINode* XULPopupElement::GetTriggerNode() const {
 diff --git a/dom/xul/moz.build b/dom/xul/moz.build
 index bb7e4b08d9..42d4bd9b65 100644
 --- a/dom/xul/moz.build
 +++ b/dom/xul/moz.build
 @@ -82,4 +82,9 @@ LOCAL_INCLUDES += [
- 
+
  include("/ipc/chromium/chromium-config.mozbuild")
- 
+
 +if CONFIG["MOZ_WIDGET_TOOLKIT"] == "gtk":
 +    LOCAL_INCLUDES += [
 +        "/widget/gtk",
@@ -172,7 +172,7 @@ index c7869a01a3..2cbdb021b3 100644
 +    LOCAL_INCLUDES += [
 +        "/widget/gtk",
 +    ]
- 
+
  XPCOM_MANIFESTS += [
      "components.conf",
 diff --git a/modules/libpref/init/all.js b/modules/libpref/init/all.js
@@ -186,7 +186,7 @@ index fab5c7b41b..60cb0d0541 100644
 +#ifdef MOZ_WIDGET_GTK
 +pref("ui.use_unity_menubar", true);
 +#endif
- 
+
  pref("browser.display.force_inline_alttext", false); // true = force ALT text for missing images to be layed out inline
  // 0 = no external leading,
 diff --git a/toolkit/content/xul.css b/toolkit/content/xul.css
@@ -196,7 +196,7 @@ index e5d202949f..763af3127a 100644
 @@ -230,6 +230,13 @@ toolbar[type="menubar"] {
  }
  %endif
- 
+
 +%ifdef MOZ_WIDGET_GTK
 +*|*:root[shellshowingmenubar="true"]
 +toolbar[type="menubar"]:not([customizing="true"]) {
@@ -292,7 +292,7 @@ index 38c07bd812..21cb705ca9 100644
 +        'headers': ['/widget/gtk/nsNativeMenuService.h'],
 +    },
  ]
- 
+
  if defined('MOZ_X11'):
 diff --git a/widget/gtk/moz.build b/widget/gtk/moz.build
 index 1d82fc36c2..4aefaadf40 100644
@@ -300,7 +300,7 @@ index 1d82fc36c2..4aefaadf40 100644
 +++ b/widget/gtk/moz.build
 @@ -34,6 +34,7 @@ EXPORTS += [
  EXPORTS.mozilla += ["WidgetUtilsGtk.h"]
- 
+
  EXPORTS.mozilla.widget += [
 +    "NativeMenuSupport.h",
      "WindowSurface.h",
@@ -315,7 +315,7 @@ index 1d82fc36c2..4aefaadf40 100644
      "nsAppShell.cpp",
      "nsBidiKeyboard.cpp",
 @@ -70,6 +72,15 @@ UNIFIED_SOURCES += [
- 
+
  SOURCES += [
      "MediaKeysEventSourceFactory.cpp",
 +    "nsDbusmenu.cpp",
@@ -5292,7 +5292,7 @@ index 84566449ab..706abd7431 100644
 @@ -7104,6 +7104,10 @@ void nsWindow::HideWindowChrome(bool aShouldHide) {
    SetWindowDecoration(aShouldHide ? eBorderStyle_none : mBorderStyle);
  }
- 
+
 +void nsWindow::SetMenuBar(UniquePtr<nsMenuBar> aMenuBar) {
 +  mMenuBar = std::move(aMenuBar);
 +}
@@ -5307,7 +5307,7 @@ index 9baa034477..a4b1a646a4 100644
 @@ -26,6 +26,8 @@
  #include "nsRefPtrHashtable.h"
  #include "IMContextWrapper.h"
- 
+
 +#include "nsMenuBar.h"
 +
  #ifdef ACCESSIBILITY
@@ -5316,21 +5316,21 @@ index 9baa034477..a4b1a646a4 100644
 @@ -183,6 +185,8 @@ class nsWindow final : public nsBaseWidget {
                            nsIScreen* aTargetScreen = nullptr) override;
    void HideWindowChrome(bool aShouldHide) override;
- 
+
 +  void SetMenuBar(mozilla::UniquePtr<nsMenuBar> aMenuBar);
 +
    /**
     * GetLastUserInputTime returns a timestamp for the most recent user input
     * event.  This is intended for pointer grab requests (including drags).
 @@ -840,6 +844,8 @@ class nsWindow final : public nsBaseWidget {
- 
+
    static bool sTransparentMainWindow;
- 
+
 +  mozilla::UniquePtr<nsMenuBar> mMenuBar;
 +
  #ifdef ACCESSIBILITY
    RefPtr<mozilla::a11y::LocalAccessible> mRootAccessible;
- 
+
 diff --git a/widget/moz.build b/widget/moz.build
 index 9cef92614b..0cbda23936 100644
 --- a/widget/moz.build
@@ -5338,7 +5338,7 @@ index 9cef92614b..0cbda23936 100644
 @@ -139,6 +139,11 @@ EXPORTS += [
      "PuppetWidget.h",
  ]
- 
+
 +if toolkit == "gtk":
 +    EXPORTS += [
 +        "nsINativeMenuService.h",
@@ -5399,7 +5399,7 @@ index 5a632e2612..ad7f165ed9 100644
 @@ -66,6 +66,14 @@
  // Menus
  //-----------------------------------------------------------
- 
+
 +// {0B3FE5AA-BC72-4303-85AE-76365DF1251D}
 +#define NS_NATIVEMENUSERVICE_CID                     \
 +  {                                                  \
@@ -5436,7 +5436,7 @@ index c2018242fb..d0f9678199 100644
  from HTMLAtoms import HTML_PARSER_ATOMS
 +from NativeMenuAtoms import NATIVE_MENU_ATOMS
  import sys
- 
+
  # Static atom definitions, used to generate nsGkAtomList.h.
 @@ -2524,7 +2525,7 @@ STATIC_ATOMS = [
      InheritingAnonBoxAtom("AnonBox_mozSVGForeignContent", ":-moz-svg-foreign-content"),
@@ -5445,21 +5445,21 @@ index c2018242fb..d0f9678199 100644
 -] + HTML_PARSER_ATOMS
 +] + HTML_PARSER_ATOMS + NATIVE_MENU_ATOMS
  # fmt: on
- 
- 
+
+
 diff --git a/xpfe/appshell/AppWindow.cpp b/xpfe/appshell/AppWindow.cpp
 index 30a82ce77a..cb4da57791 100644
 --- a/xpfe/appshell/AppWindow.cpp
 +++ b/xpfe/appshell/AppWindow.cpp
 @@ -80,7 +80,7 @@
- 
+
  #include "mozilla/dom/DocumentL10n.h"
- 
+
 -#ifdef XP_MACOSX
 +#if defined(XP_MACOSX) || defined(MOZ_WIDGET_GTK)
  #  include "mozilla/widget/NativeMenuSupport.h"
  #  define USE_NATIVE_MENUS
  #endif
--- 
+--
 2.35.1
 
