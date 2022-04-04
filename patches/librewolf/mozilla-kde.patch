@@ -399,10 +399,10 @@ new file mode 100644
 +
 +//#define DEBUG_KDE
 +#ifdef DEBUG_KDE
-+#define KMOZILLAHELPER "kfiredragonhelper"
++#define KMOZILLAHELPER "kmozillahelper"
 +#else
 +// not need for lib64, it's a binary
-+#define KMOZILLAHELPER "/usr/lib/mozilla/kfiredragonhelper"
++#define KMOZILLAHELPER "/usr/lib/mozilla/kmozillahelper"
 +#endif
 +
 +#define KMOZILLAHELPER_VERSION 6
