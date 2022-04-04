@@ -622,10 +622,10 @@ index d276f7a..a7f70ef 100644
  save-files-to-cloud-storage =
      .label = Save files to { $service-name }
 +
-+## LibreWolf preferences
++## FireDragon preferences
 +
 +# Sidebar
-+pane-librewolf-title = LibreWolf
++pane-librewolf-title = FireDragon
 +category-librewolf =
 +    .tooltiptext = about:config changes, logically grouped and easily accessible
 +
