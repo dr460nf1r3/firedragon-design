@@ -49,7 +49,7 @@
 
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -140,17 +140,17 @@ moz_asserts = { path = "mozglue/static/r
+@@ -141,17 +141,17 @@ moz_asserts = { path = "mozglue/static/r
  
  # Other overrides
  async-task = { git = "https://github.com/smol-rs/async-task", rev="f6488e35beccb26eb6e85847b02aa78a42cd3d0e" }
@@ -68,31 +68,6 @@
  sql-support = { git = "https://github.com/mozilla/application-services", rev = "2689788cecf24c385e6b7440e3aa1a89c511f14a" }
  sync15-traits = { git = "https://github.com/mozilla/application-services", rev = "2689788cecf24c385e6b7440e3aa1a89c511f14a" }
  viaduct = { git = "https://github.com/mozilla/application-services", rev = "2689788cecf24c385e6b7440e3aa1a89c511f14a" }
-
---- a/supply-chain/audits.toml
-+++ b/supply-chain/audits.toml
-@@ -273,16 +273,21 @@ version = "0.1.1"
- notes = """
- I'm the author of the crate. The only unsafe code is a view over a byte array
- which is properly validated.
- 
- Cryptography shenanigans are delegated to the caller so there's no possible
- unsoundness there.
- """
- 
-+[[audits.packed_simd_2]]
-+who = "Mike Hommey <mh+mozilla@glandium.org>"
-+criteria = "safe-to-deploy"
-+delta = "0.3.7 -> 0.3.8"
-+
- [[audits.precomputed-hash]]
- who = "Bobby Holley <bobbyholley@gmail.com>"
- criteria = "safe-to-deploy"
- version = "0.1.1"
- notes = "This is a trivial crate."
- 
- [[audits.rust_decimal]]
- who = "Mike Hommey <mh+mozilla@glandium.org>"
 
 --- a/third_party/rust/packed_simd_2/.cargo-checksum.json
 +++ b/third_party/rust/packed_simd_2/.cargo-checksum.json
