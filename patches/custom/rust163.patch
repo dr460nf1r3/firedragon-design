@@ -5,18 +5,18 @@
  git = "https://github.com/jfkthame/mapped_hyph.git"
  replace-with = "vendored-sources"
  rev = "746743227485a83123784df0c53227ab466612ed"
- 
+
  [source."https://github.com/hsivonen/packed_simd"]
  git = "https://github.com/hsivonen/packed_simd"
  replace-with = "vendored-sources"
 -rev = "c149d0a519bf878567c7630096737669ec2ff15f"
 +rev = "90eebb82a107cbec1c8e406d9223819417e96de1"
- 
+
  [source."https://github.com/hsivonen/chardetng_c"]
  git = "https://github.com/hsivonen/chardetng_c"
  replace-with = "vendored-sources"
  rev = "ed8a4c6f900a90d4dbc1d64b856e61490a1c3570"
- 
+
  [source."https://github.com/hsivonen/chardetng"]
  git = "https://github.com/hsivonen/chardetng"
 
@@ -28,7 +28,7 @@
  dependencies = [
   "stable_deref_trait",
  ]
- 
+
  [[package]]
  name = "packed_simd_2"
 -version = "0.3.7"
@@ -39,7 +39,7 @@
   "cfg-if 1.0.0",
 + "rustc_version",
  ]
- 
+
  [[package]]
  name = "parking_lot"
  version = "0.11.2"
@@ -49,8 +49,8 @@
 
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -141,17 +141,17 @@ moz_asserts = { path = "mozglue/static/r
- 
+@@ -140,17 +140,17 @@ moz_asserts = { path = "mozglue/static/r
+
  # Other overrides
  async-task = { git = "https://github.com/smol-rs/async-task", rev="f6488e35beccb26eb6e85847b02aa78a42cd3d0e" }
  chardetng = { git = "https://github.com/hsivonen/chardetng", rev="3484d3e3ebdc8931493aa5df4d7ee9360a90e76b" }
@@ -62,6 +62,12 @@
 +packed_simd = { package = "packed_simd_2", git = "https://github.com/hsivonen/packed_simd", rev="90eebb82a107cbec1c8e406d9223819417e96de1" }
  midir = { git = "https://github.com/mozilla/midir.git", rev = "4c11f0ffb5d6a10de4aff40a7b81218b33b94e6f" }
  minidump_writer_linux = { git = "https://github.com/rust-minidump/minidump-writer.git", rev = "75ada456c92a429704691a85e1cb42fef8cafc0d" }
+
+ # application-services overrides to make updating them all simpler.
+ interrupt-support = { git = "https://github.com/mozilla/application-services", rev = "2689788cecf24c385e6b7440e3aa1a89c511f14a" }
+ sql-support = { git = "https://github.com/mozilla/application-services", rev = "2689788cecf24c385e6b7440e3aa1a89c511f14a" }
+ sync15-traits = { git = "https://github.com/mozilla/application-services", rev = "2689788cecf24c385e6b7440e3aa1a89c511f14a" }
+ viaduct = { git = "https://github.com/mozilla/application-services", rev = "2689788cecf24c385e6b7440e3aa1a89c511f14a" }
 
 --- a/third_party/rust/packed_simd_2/.cargo-checksum.json
 +++ b/third_party/rust/packed_simd_2/.cargo-checksum.json
@@ -90,11 +96,11 @@
  is-it-maintained-issue-resolution = { repository = "rust-lang/packed_simd" }
  is-it-maintained-open-issues = { repository = "rust-lang/packed_simd" }
  maintenance = { status = "experimental" }
- 
+
  [dependencies]
  cfg-if = "1.0.0"
  core_arch = { version = "0.1.5", optional = true }
- 
+
 +[build-dependencies]
 +rustc_version = "0.4"
 +
@@ -102,7 +108,7 @@
  default = []
  into_bits = []
  libcore_neon = []
- 
+
  [dev-dependencies]
  paste = "^0.1.3"
  arrayvec = { version = "^0.5", default-features = false }
@@ -111,23 +117,23 @@
 +++ b/third_party/rust/packed_simd_2/README.md
 @@ -3,17 +3,17 @@
  The original maintainer is out of contact, and the new maintainers (the Portable SIMD Project Group) do not have the appropriate crates.io permissions to issue updates.
- 
+
  We are aware that the version available on crates.io is currently broken, and will not build.
- 
+
  If you need to continue to use the crate, we have published a "next version" under an alternative name.
- 
+
  Adjust your `[dependencies]` section of `Cargo.toml` to be the following:
  ```toml
 -packed_simd = { version = "0.3.6", package = "packed_simd_2" }
 +packed_simd = { version = "0.3.8", package = "packed_simd_2" }
  ```
- 
+
  # `Simd<[T; N]>`
- 
+
  ## Implementation of [Rust RFC #2366: `std::simd`][rfc2366]
- 
+
  [![Travis-CI Status]][travis] <!-- [![Appveyor Status]][appveyor] --> [![Latest Version]][crates.io] [![docs]][master_docs]
- 
+
 
 --- a/third_party/rust/packed_simd_2/build.rs
 +++ b/third_party/rust/packed_simd_2/build.rs
@@ -148,7 +154,7 @@
 +++ b/third_party/rust/packed_simd_2/src/api.rs
 @@ -1,13 +1,13 @@
  //! Implements the Simd<[T; N]> APIs
- 
+
  #[macro_use]
  mod bitmask;
 -crate mod cast;
@@ -168,11 +174,11 @@
  mod swap_bytes;
  #[macro_use]
  mod bit_manip;
- 
+
  #[cfg(feature = "into_bits")]
 -crate mod into_bits;
 +pub(crate) mod into_bits;
- 
+
  macro_rules! impl_i {
      ([$elem_ty:ident; $elem_n:expr]: $tuple_id:ident, $mask_ty:ident
       | $ielem_ty:ident, $ibitmask_ty:ident | $test_tt:tt | $($elem_ids:ident),*
@@ -185,7 +191,7 @@
 +++ b/third_party/rust/packed_simd_2/src/codegen.rs
 @@ -1,24 +1,24 @@
  //! Code-generation utilities
- 
+
 -crate mod bit_manip;
 -crate mod llvm;
 -crate mod math;
@@ -200,7 +206,7 @@
 +pub(crate) mod shuffle;
 +pub(crate) mod shuffle1_dyn;
 +pub(crate) mod swap_bytes;
- 
+
  macro_rules! impl_simd_array {
      ([$elem_ty:ident; $elem_count:expr]:
       $tuple_id:ident | $($elem_tys:ident),*) => {
@@ -209,9 +215,9 @@
 -        pub struct $tuple_id($(crate $elem_tys),*);
 +        pub struct $tuple_id($(pub(crate) $elem_tys),*);
          //^^^^^^^ leaked through SimdArray
- 
+
          impl crate::sealed::Seal for [$elem_ty; $elem_count] {}
- 
+
          impl crate::sealed::SimdArray for [$elem_ty; $elem_count] {
              type Tuple = $tuple_id;
              type T = $elem_ty;
@@ -221,48 +227,48 @@
              const LANES: usize = $elem_count;
              type LanesType = [u32; $elem_count];
          }
- 
+
      }
  }
- 
+
 -crate mod pointer_sized_int;
 +pub(crate) mod pointer_sized_int;
- 
+
 -crate mod v16;
 -crate use self::v16::*;
 +pub(crate) mod v16;
 +pub(crate) use self::v16::*;
- 
+
 -crate mod v32;
 -crate use self::v32::*;
 +pub(crate) mod v32;
 +pub(crate) use self::v32::*;
- 
+
 -crate mod v64;
 -crate use self::v64::*;
 +pub(crate) mod v64;
 +pub(crate) use self::v64::*;
- 
+
 -crate mod v128;
 -crate use self::v128::*;
 +pub(crate) mod v128;
 +pub(crate) use self::v128::*;
- 
+
 -crate mod v256;
 -crate use self::v256::*;
 +pub(crate) mod v256;
 +pub(crate) use self::v256::*;
- 
+
 -crate mod v512;
 -crate use self::v512::*;
 +pub(crate) mod v512;
 +pub(crate) use self::v512::*;
- 
+
 -crate mod vSize;
 -crate use self::vSize::*;
 +pub(crate) mod vSize;
 +pub(crate) use self::vSize::*;
- 
+
 -crate mod vPtr;
 -crate use self::vPtr::*;
 +pub(crate) mod vPtr;
@@ -273,10 +279,10 @@
 @@ -1,12 +1,12 @@
  //! LLVM bit manipulation intrinsics.
  #[rustfmt::skip]
- 
+
 -use crate::*;
 +pub(crate) use crate::*;
- 
+
  #[allow(improper_ctypes, dead_code)]
  extern "C" {
      #[link_name = "llvm.ctlz.v2i8"]
@@ -292,14 +298,14 @@
      #[link_name = "llvm.ctpop.v4i128"]
      fn ctpop_u128x4(x: u128x4) -> u128x4;
  }
- 
+
 -crate trait BitManip {
 +pub(crate) trait BitManip {
      fn ctpop(self) -> Self;
      fn ctlz(self) -> Self;
      fn cttz(self) -> Self;
  }
- 
+
  macro_rules! impl_bit_manip {
      (inner: $ty:ident, $scalar:ty, $uty:ident,
       $ctpop:ident, $ctlz:ident, $cttz:ident) => {
@@ -313,7 +319,7 @@
  {
      simd_shuffle64(x, y, IDX)
  }
- 
+
  extern "platform-intrinsic" {
 -    crate fn simd_eq<T, U>(x: T, y: T) -> U;
 -    crate fn simd_ne<T, U>(x: T, y: T) -> U;
@@ -327,15 +333,15 @@
 +    pub(crate) fn simd_le<T, U>(x: T, y: T) -> U;
 +    pub(crate) fn simd_gt<T, U>(x: T, y: T) -> U;
 +    pub(crate) fn simd_ge<T, U>(x: T, y: T) -> U;
- 
+
 -    crate fn simd_insert<T, U>(x: T, idx: u32, val: U) -> T;
 -    crate fn simd_extract<T, U>(x: T, idx: u32) -> U;
 +    pub(crate) fn simd_insert<T, U>(x: T, idx: u32, val: U) -> T;
 +    pub(crate) fn simd_extract<T, U>(x: T, idx: u32) -> U;
- 
+
 -    crate fn simd_cast<T, U>(x: T) -> U;
 +    pub(crate) fn simd_cast<T, U>(x: T) -> U;
- 
+
 -    crate fn simd_add<T>(x: T, y: T) -> T;
 -    crate fn simd_sub<T>(x: T, y: T) -> T;
 -    crate fn simd_mul<T>(x: T, y: T) -> T;
@@ -356,7 +362,7 @@
 +    pub(crate) fn simd_and<T>(x: T, y: T) -> T;
 +    pub(crate) fn simd_or<T>(x: T, y: T) -> T;
 +    pub(crate) fn simd_xor<T>(x: T, y: T) -> T;
- 
+
 -    crate fn simd_reduce_add_unordered<T, U>(x: T) -> U;
 -    crate fn simd_reduce_mul_unordered<T, U>(x: T) -> U;
 -    crate fn simd_reduce_add_ordered<T, U>(x: T, acc: U) -> U;
@@ -383,25 +389,25 @@
 +    pub(crate) fn simd_reduce_xor<T, U>(x: T) -> U;
 +    pub(crate) fn simd_reduce_all<T>(x: T) -> bool;
 +    pub(crate) fn simd_reduce_any<T>(x: T) -> bool;
- 
+
 -    crate fn simd_select<M, T>(m: M, a: T, b: T) -> T;
 +    pub(crate) fn simd_select<M, T>(m: M, a: T, b: T) -> T;
- 
+
 -    crate fn simd_fmin<T>(a: T, b: T) -> T;
 -    crate fn simd_fmax<T>(a: T, b: T) -> T;
 +    pub(crate) fn simd_fmin<T>(a: T, b: T) -> T;
 +    pub(crate) fn simd_fmax<T>(a: T, b: T) -> T;
- 
+
 -    crate fn simd_fsqrt<T>(a: T) -> T;
 -    crate fn simd_fma<T>(a: T, b: T, c: T) -> T;
 +    pub(crate) fn simd_fsqrt<T>(a: T) -> T;
 +    pub(crate) fn simd_fma<T>(a: T, b: T, c: T) -> T;
- 
+
 -    crate fn simd_gather<T, P, M>(value: T, pointers: P, mask: M) -> T;
 -    crate fn simd_scatter<T, P, M>(value: T, pointers: P, mask: M);
 +    pub(crate) fn simd_gather<T, P, M>(value: T, pointers: P, mask: M) -> T;
 +    pub(crate) fn simd_scatter<T, P, M>(value: T, pointers: P, mask: M);
- 
+
 -    crate fn simd_bitmask<T, U>(value: T) -> U;
 +    pub(crate) fn simd_bitmask<T, U>(value: T) -> U;
  }
@@ -410,7 +416,7 @@
 +++ b/third_party/rust/packed_simd_2/src/codegen/math.rs
 @@ -1,3 +1,3 @@
  //! Vertical math operations
- 
+
 -crate mod float;
 +pub(crate) mod float;
 
@@ -419,7 +425,7 @@
 @@ -1,18 +1,18 @@
  //! Vertical floating-point math operations.
  #![allow(clippy::useless_transmute)]
- 
+
  #[macro_use]
 -crate mod macros;
 -crate mod abs;
@@ -455,16 +461,16 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `fabs`
  #![allow(unused)]
- 
+
  // FIXME 64-bit 1 elem vectors fabs
- 
+
  use crate::*;
- 
+
 -crate trait Abs {
 +pub(crate) trait Abs {
      fn abs(self) -> Self;
  }
- 
+
  #[allow(improper_ctypes)]
  extern "C" {
      #[link_name = "llvm.fabs.v2f32"]
@@ -476,16 +482,16 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `cos`
  #![allow(unused)]
- 
+
  // FIXME 64-bit 1 elem vector cos
- 
+
  use crate::*;
- 
+
 -crate trait Cos {
 +pub(crate) trait Cos {
      fn cos(self) -> Self;
  }
- 
+
  #[allow(improper_ctypes)]
  extern "C" {
      #[link_name = "llvm.cos.v2f32"]
@@ -497,18 +503,18 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `cos`
  #![allow(unused)]
- 
+
  // FIXME 64-bit 1 elem vectors cos_pi
- 
+
  use crate::*;
- 
+
 -crate trait CosPi {
 +pub(crate) trait CosPi {
      fn cos_pi(self) -> Self;
  }
- 
+
  gen_unary_impl_table!(CosPi, cos_pi);
- 
+
  macro_rules! impl_def {
      ($vid:ident, $PI:path) => {
          impl CosPi for $vid {
@@ -518,16 +524,16 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `exp`
  #![allow(unused)]
- 
+
  // FIXME 64-bit expgle elem vectors misexpg
- 
+
  use crate::*;
- 
+
 -crate trait Exp {
 +pub(crate) trait Exp {
      fn exp(self) -> Self;
  }
- 
+
  #[allow(improper_ctypes)]
  extern "C" {
      #[link_name = "llvm.exp.v2f32"]
@@ -539,16 +545,16 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `ln`
  #![allow(unused)]
- 
+
  // FIXME 64-bit lngle elem vectors mislng
- 
+
  use crate::*;
- 
+
 -crate trait Ln {
 +pub(crate) trait Ln {
      fn ln(self) -> Self;
  }
- 
+
  #[allow(improper_ctypes)]
  extern "C" {
      #[link_name = "llvm.log.v2f32"]
@@ -561,14 +567,14 @@
  //! Vertical floating-point `mul_add`
  #![allow(unused)]
  use crate::*;
- 
+
  // FIXME: 64-bit 1 element mul_add
- 
+
 -crate trait MulAdd {
 +pub(crate) trait MulAdd {
      fn mul_add(self, y: Self, z: Self) -> Self;
  }
- 
+
  #[cfg(not(target_arch = "s390x"))]
  #[allow(improper_ctypes)]
  extern "C" {
@@ -580,14 +586,14 @@
 @@ -1,14 +1,14 @@
  //! Approximation for floating-point `mul_add`
  use crate::*;
- 
+
  // FIXME: 64-bit 1 element mul_adde
- 
+
 -crate trait MulAddE {
 +pub(crate) trait MulAddE {
      fn mul_adde(self, y: Self, z: Self) -> Self;
  }
- 
+
  #[cfg(not(target_arch = "s390x"))]
  #[allow(improper_ctypes)]
  extern "C" {
@@ -599,16 +605,16 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `powf`
  #![allow(unused)]
- 
+
  // FIXME 64-bit powfgle elem vectors mispowfg
- 
+
  use crate::*;
- 
+
 -crate trait Powf {
 +pub(crate) trait Powf {
      fn powf(self, x: Self) -> Self;
  }
- 
+
  #[allow(improper_ctypes)]
  extern "C" {
      #[link_name = "llvm.pow.v2f32"]
@@ -620,16 +626,16 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `sin`
  #![allow(unused)]
- 
+
  // FIXME 64-bit 1 elem vectors sin
- 
+
  use crate::*;
- 
+
 -crate trait Sin {
 +pub(crate) trait Sin {
      fn sin(self) -> Self;
  }
- 
+
  #[allow(improper_ctypes)]
  extern "C" {
      #[link_name = "llvm.sin.v2f32"]
@@ -641,17 +647,17 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `sin_cos`
  #![allow(unused)]
- 
+
  // FIXME 64-bit 1 elem vectors sin_cos
- 
+
  use crate::*;
- 
+
 -crate trait SinCosPi: Sized {
 +pub(crate) trait SinCosPi: Sized {
      type Output;
      fn sin_cos_pi(self) -> Self::Output;
  }
- 
+
  macro_rules! impl_def {
      ($vid:ident, $PI:path) => {
          impl SinCosPi for $vid {
@@ -662,18 +668,18 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `sin_pi`
  #![allow(unused)]
- 
+
  // FIXME 64-bit 1 elem vectors sin_pi
- 
+
  use crate::*;
- 
+
 -crate trait SinPi {
 +pub(crate) trait SinPi {
      fn sin_pi(self) -> Self;
  }
- 
+
  gen_unary_impl_table!(SinPi, sin_pi);
- 
+
  macro_rules! impl_def {
      ($vid:ident, $PI:path) => {
          impl SinPi for $vid {
@@ -683,16 +689,16 @@
 @@ -1,16 +1,16 @@
  //! Vertical floating-point `sqrt`
  #![allow(unused)]
- 
+
  // FIXME 64-bit 1 elem vectors sqrt
- 
+
  use crate::*;
- 
+
 -crate trait Sqrt {
 +pub(crate) trait Sqrt {
      fn sqrt(self) -> Self;
  }
- 
+
  #[allow(improper_ctypes)]
  extern "C" {
      #[link_name = "llvm.sqrt.v2f32"]
@@ -704,19 +710,19 @@
 @@ -1,17 +1,17 @@
  //! Vertical floating-point `sqrt`
  #![allow(unused)]
- 
+
  // FIXME 64-bit 1 elem vectors sqrte
- 
+
  use crate::llvm::simd_fsqrt;
  use crate::*;
- 
+
 -crate trait Sqrte {
 +pub(crate) trait Sqrte {
      fn sqrte(self) -> Self;
  }
- 
+
  gen_unary_impl_table!(Sqrte, sqrte);
- 
+
  cfg_if! {
      if #[cfg(all(target_arch = "x86_64", feature = "sleef-sys"))] {
          use sleef_sys::*;
@@ -725,9 +731,9 @@
 +++ b/third_party/rust/packed_simd_2/src/codegen/pointer_sized_int.rs
 @@ -1,28 +1,28 @@
  //! Provides `isize` and `usize`
- 
+
  use cfg_if::cfg_if;
- 
+
  cfg_if! {
      if #[cfg(target_pointer_width = "8")] {
 -        crate type isize_ = i8;
@@ -744,7 +750,7 @@
 -        crate type usize_ = u32;
 +        pub(crate) type isize_ = i32;
 +        pub(crate) type usize_ = u32;
- 
+
      } else if #[cfg(target_pointer_width = "64")] {
 -        crate type isize_ = i64;
 -        crate type usize_ = u64;
@@ -779,22 +785,22 @@
  //!
  //! [LLVM bug 36702]: https://bugs.llvm.org/show_bug.cgi?id=36702
  #![allow(unused_macros)]
- 
+
  use crate::*;
- 
+
 -crate trait All: crate::marker::Sized {
 +pub(crate) trait All: crate::marker::Sized {
      unsafe fn all(self) -> bool;
  }
- 
+
 -crate trait Any: crate::marker::Sized {
 +pub(crate) trait Any: crate::marker::Sized {
      unsafe fn any(self) -> bool;
  }
- 
+
  #[macro_use]
  mod fallback_impl;
- 
+
  cfg_if! {
      if #[cfg(any(target_arch = "x86", target_arch = "x86_64"))] {
 
@@ -802,17 +808,17 @@
 +++ b/third_party/rust/packed_simd_2/src/codegen/swap_bytes.rs
 @@ -1,26 +1,26 @@
  //! Horizontal swap bytes reductions.
- 
+
  // FIXME: investigate using `llvm.bswap`
  // https://github.com/rust-lang-nursery/packed_simd/issues/19
- 
+
  use crate::*;
- 
+
 -crate trait SwapBytes {
 +pub(crate) trait SwapBytes {
      fn swap_bytes(self) -> Self;
  }
- 
+
  macro_rules! impl_swap_bytes {
      (v16: $($id:ident,)+) => {
          $(
@@ -834,7 +840,7 @@
 +++ b/third_party/rust/packed_simd_2/src/codegen/vPtr.rs
 @@ -1,16 +1,16 @@
  //! Pointer vector types
- 
+
  macro_rules! impl_simd_ptr {
      ([$ptr_ty:ty; $elem_count:expr]: $tuple_id:ident | $ty:ident
       | $($tys:ty),*) => {
@@ -843,7 +849,7 @@
 -        pub struct $tuple_id<$ty>($(crate $tys),*);
 +        pub struct $tuple_id<$ty>($(pub(crate) $tys),*);
          //^^^^^^^ leaked through SimdArray
- 
+
          impl<$ty> crate::sealed::Seal for [$ptr_ty; $elem_count] {}
          impl<$ty> crate::sealed::SimdArray for [$ptr_ty; $elem_count] {
              type Tuple = $tuple_id<$ptr_ty>;
@@ -855,7 +861,7 @@
 +++ b/third_party/rust/packed_simd_2/src/lib.rs
 @@ -212,24 +212,23 @@
  //! guide](https://rust-lang-nursery.github.io/packed_simd/perf-guide/)
- 
+
  #![feature(
      adt_const_params,
      repr_simd,
@@ -880,14 +886,14 @@
          clippy::cast_lossless,
          clippy::cast_possible_wrap,
 @@ -339,11 +338,11 @@ pub use self::api::into_bits::*;
- 
+
  // Re-export the shuffle intrinsics required by the `shuffle!` macro.
  #[doc(hidden)]
  pub use self::codegen::llvm::{
      __shuffle_vector16, __shuffle_vector2, __shuffle_vector32, __shuffle_vector4, __shuffle_vector64,
      __shuffle_vector8,
  };
- 
+
 -crate mod llvm {
 -    crate use crate::codegen::llvm::*;
 +pub(crate) mod llvm {
@@ -898,10 +904,10 @@
 +++ b/third_party/rust/packed_simd_2/src/testing.rs
 @@ -1,8 +1,8 @@
  //! Testing macros and other utilities.
- 
+
  #[macro_use]
  mod macros;
- 
+
  #[cfg(test)]
  #[macro_use]
 -crate mod utils;
