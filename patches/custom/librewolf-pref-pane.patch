@@ -677,7 +677,7 @@ index a1e414697e71..8eeb594ca17d 100644
 +librewolf-extension-update-checkbox =
 +    .label = Update add-ons automatically
 +librewolf-sync-checkbox =
-+    .label = Enable FireDragon Sync
++    .label = Enable Firefox Sync
 +librewolf-autocopy-checkbox =
 +    .label = Enable middle click paste
 +librewolf-styling-checkbox = 
@@ -766,9 +766,9 @@ index 146764d56081..52326c00bdfe 100644
    skin/classic/browser/preferences/search.css                  (../shared/preferences/search.css)
    skin/classic/browser/preferences/siteDataSettings.css        (../shared/preferences/siteDataSettings.css)
 +  skin/classic/browser/preferences/librewolf.css               (../shared/preferences/librewolf.css)
-   skin/classic/browser/spotlight.css                           (../shared/spotlight.css)
-   skin/classic/browser/upgradeDialog/abstract.png              (../shared/upgradeDialog/abstract.png)
-   skin/classic/browser/upgradeDialog/cheers.png                (../shared/upgradeDialog/cheers.png)
+   skin/classic/browser/fxa/fxa-spinner.svg                     (../shared/fxa/fxa-spinner.svg)
+   skin/classic/browser/fxa/sync-illustration.svg               (../shared/fxa/sync-illustration.svg)
+   skin/classic/browser/fxa/sync-illustration-issue.svg         (../shared/fxa/sync-illustration-issue.svg)
 diff --git a/browser/themes/shared/preferences/librewolf.css b/browser/themes/shared/preferences/librewolf.css
 new file mode 100644
 index 000000000000..12f926ab7018
@@ -815,4 +815,3 @@ index 1968b68a1245..d0da141868e2 100644
  }
 -- 
 2.37.3
-
