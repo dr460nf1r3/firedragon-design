@@ -6,7 +6,7 @@ index 2131a15ceef7..0b97dc14b42e 100644
     content/browser/preferences/home.js
     content/browser/preferences/search.js
     content/browser/preferences/privacy.js
-+   content/browser/preferences/FireDragon.js
++   content/browser/preferences/Firedragon.js
     content/browser/preferences/containers.js
     content/browser/preferences/sync.js
     content/browser/preferences/experimental.js
@@ -18,7 +18,7 @@ index 19dda7cf39eb..f5e67b637b49 100644
  /* import-globals-from search.js */
  /* import-globals-from containers.js */
  /* import-globals-from privacy.js */
-+/* import-globals-from FireDragon.js */
++/* import-globals-from Firedragon.js */
  /* import-globals-from sync.js */
  /* import-globals-from experimental.js */
  /* import-globals-from moreFromMozilla.js */
@@ -38,7 +38,7 @@ index 378be0a..26caf49 100644
      href="chrome://browser/skin/preferences/containers.css"
    />
    <link rel="stylesheet" href="chrome://browser/skin/preferences/privacy.css" />
-+  <link rel="stylesheet" href="chrome://browser/skin/preferences/FireDragon.css" />
++  <link rel="stylesheet" href="chrome://browser/skin/preferences/Firedragon.css" />
  
    <link rel="localization" href="branding/brand.ftl"/>
    <link rel="localization" href="browser/browser.ftl"/>
@@ -46,15 +46,15 @@ index 378be0a..26caf49 100644
            <label class="category-name" flex="1" data-l10n-id="pane-privacy-title"></label>
          </richlistitem>
  
-+        <richlistitem id="category-FireDragon"
++        <richlistitem id="category-Firedragon"
 +                      class="category"
 +                      value="paneLibrewolf"
-+                      helpTopic="prefs-FireDragon"
-+                      data-l10n-id="category-FireDragon"
++                      helpTopic="prefs-Firedragon"
++                      data-l10n-id="category-Firedragon"
 +                      data-l10n-attrs="tooltiptext"
 +                      align="center">
 +          <image class="category-icon"/>
-+          <label class="category-name" flex="1" data-l10n-id="pane-FireDragon-title"></label>
++          <label class="category-name" flex="1" data-l10n-id="pane-Firedragon-title"></label>
 +        </richlistitem>
 +
          <richlistitem id="category-sync"
@@ -64,7 +64,7 @@ index 378be0a..26caf49 100644
  #include home.inc.xhtml
  #include search.inc.xhtml
  #include privacy.inc.xhtml
-+#include FireDragon.inc.xhtml
++#include Firedragon.inc.xhtml
  #include containers.inc.xhtml
  #include sync.inc.xhtml
  #include experimental.inc.xhtml
@@ -76,7 +76,7 @@ index 146764d56081..52326c00bdfe 100644
    skin/classic/browser/preferences/android-menu.svg            (../shared/preferences/android-menu.svg)
    skin/classic/browser/preferences/category-general.svg        (../shared/preferences/category-general.svg)
    skin/classic/browser/preferences/category-privacy-security.svg    (../shared/preferences/category-privacy-security.svg)
-+  skin/classic/browser/preferences/category-FireDragon.svg    (../shared/preferences/category-FireDragon.svg)
++  skin/classic/browser/preferences/category-Firedragon.svg    (../shared/preferences/category-Firedragon.svg)
    skin/classic/browser/preferences/category-search.svg         (../shared/preferences/category-search.svg)
    skin/classic/browser/preferences/category-sync.svg           (../shared/preferences/category-sync.svg)
    skin/classic/browser/preferences/containers.css              (../shared/preferences/containers.css)
@@ -84,7 +84,7 @@ index 146764d56081..52326c00bdfe 100644
    skin/classic/browser/preferences/vpn-logo.svg                (../shared/preferences/vpn-logo.svg)
    skin/classic/browser/preferences/search.css                  (../shared/preferences/search.css)
    skin/classic/browser/preferences/siteDataSettings.css        (../shared/preferences/siteDataSettings.css)
-+  skin/classic/browser/preferences/FireDragon.css               (../shared/preferences/FireDragon.css)
++  skin/classic/browser/preferences/Firedragon.css               (../shared/preferences/Firedragon.css)
    skin/classic/browser/translations/panel.css                  (../shared/translations/panel.css)
    skin/classic/browser/fxa/fxa-spinner.svg                     (../shared/fxa/fxa-spinner.svg)
    skin/classic/browser/fxa/sync-illustration.svg               (../shared/fxa/sync-illustration.svg)
@@ -96,8 +96,8 @@ index 1968b68a1245..d0da141868e2 100644
    list-style-image: url("chrome://browser/skin/preferences/category-privacy-security.svg");
  }
  
-+#category-FireDragon > .category-icon {
-+  list-style-image: url("chrome://browser/skin/preferences/category-FireDragon.svg");
++#category-Firedragon > .category-icon {
++  list-style-image: url("chrome://browser/skin/preferences/category-Firedragon.svg");
 +}
 +
  #category-sync > .category-icon {
