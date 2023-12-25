@@ -4,6 +4,5 @@
 
 MOZ_APP_NAME=firedragon
 MOZ_APP_BASENAME="FireDragon"
-MOZ_APP_PROFILE=firedragon-next
+MOZ_APP_PROFILE=firedragon
 MOZ_APP_VENDOR=FireDragon
-
