@@ -1,0 +1,50 @@
+--- preferences-floorp.css	2024-01-09 17:46:56.319247946 -0500
++++ preferences-floorpPATCHED.css	2024-01-09 17:50:45.234709839 -0500
+@@ -333,15 +333,15 @@
+   }
+ 
+   .content-blocking-category.expanded:not(.selected) .content-blocking-warning {
+-    background-color: #f7f7f7 !important;
++    background-color: #1F1E24 !important;
+   }
+ 
+   @media (prefers-color-scheme: dark) {
+      :root {
+-      --in-content-page-background: #333 !important;
++      --in-content-page-background: #1F1E24 !important;
+       --in-content-text-color: #fff !important;
+       --in-content-page-color: #fff !important;
+-      --card-background: #3b3b3b;
++      --card-background: #1F1E24;
+       --card-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 25%), 0px 0px 2.9px rgb(0 0 0 / 22%) !important;
+       --sidebar-border-color: #6b6b6b;
+       --in-content-accent-color: #63ade5 !important;
+@@ -350,7 +350,7 @@
+       --section-highlight-background-color: #63ade520 !important;
+       --search-bgcolor: #2b2b2b;
+       --input-border-color-focused: #808080;
+-      --checkbox-bgcolor: #333;
++      --checkbox-bgcolor: #1F1E24;
+       --checkbox-border-color: #7d7d7d;
+       --checkbox-hover-border-color: #A4A4A4;
+       --checkbox-fill-color: #fff;
+@@ -361,10 +361,10 @@
+       border-color: #63ade5 !important;
+     }
+     .content-blocking-category.expanded:not(.selected) .content-blocking-warning {
+-      background-color: #333 !important;
++      background-color: #1F1E24 !important;
+     }
+     .dialogBox {
+-      --in-content-page-background: #333333 !important;
++      --in-content-page-background: #1F1E24 !important;
+     }
+   }
+ 
+@@ -781,4 +781,4 @@
+ 
+   #workspaces-removed-migration-tools-description {
+     margin-bottom: 10px;
+-  }
+\ No newline at end of file
++  }
