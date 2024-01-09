@@ -1,5 +1,5 @@
 --- preferences-floorp.css	2024-01-09 17:46:56.319247946 -0500
-+++ preferences-floorpPATCHED.css	2024-01-09 17:50:45.234709839 -0500
++++ preferences-floorp.css	2024-01-09 17:50:45.234709839 -0500
 @@ -333,15 +333,15 @@
    }
  
