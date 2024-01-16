@@ -1,0 +1,105 @@
+diff --git a/browser/components/preferences/jar.mn b/browser/components/preferences/jar.mn
+index 2131a15ceef7..8909cc39e1e9 100644
+--- a/browser/components/preferences/jar.mn
++++ b/browser/components/preferences/jar.mn
+@@ -13,6 +13,7 @@ browser.jar:
+    content/browser/preferences/privacy.js
+    content/browser/preferences/containers.js
+    content/browser/preferences/sync.js
++   content/browser/preferences/firedragon.js
+    content/browser/preferences/experimental.js
+    content/browser/preferences/moreFromMozilla.js
+    content/browser/preferences/fxaPairDevice.xhtml
+diff --git a/browser/components/preferences/preferences.js b/browser/components/preferences/preferences.js
+index a8cc6737b3a0..213e65f38a9a 100644
+--- a/browser/components/preferences/preferences.js
++++ b/browser/components/preferences/preferences.js
+@@ -9,6 +9,7 @@
+ /* import-globals-from containers.js */
+ /* import-globals-from privacy.js */
+ /* import-globals-from sync.js */
++/* import-globals-from firedragon.js */
+ /* import-globals-from experimental.js */
+ /* import-globals-from moreFromMozilla.js */
+ /* import-globals-from findInPage.js */
+@@ -216,6 +217,7 @@ function init_all() {
+   register_module("paneHome", gHomePane);
+   register_module("paneSearch", gSearchPane);
+   register_module("panePrivacy", gPrivacyPane);
++  register_module("paneFiredragon", gFiredragonPane);
+   register_module("paneContainers", gContainersPane);
+ 
+   var { FloorpAppConstants } = ChromeUtils.importESModule(
+diff --git a/browser/components/preferences/preferences.xhtml b/browser/components/preferences/preferences.xhtml
+index 60d1b903330a..13374ac1e583 100644
+--- a/browser/components/preferences/preferences.xhtml
++++ b/browser/components/preferences/preferences.xhtml
+@@ -13,6 +13,7 @@
+ <?xml-stylesheet href="chrome://browser/skin/preferences/containers.css"?>
+ <?xml-stylesheet href="chrome://browser/skin/preferences/privacy.css"?>
+ <?xml-stylesheet href="chrome://browser/skin/preferences/preferences-floorp.css"?>
++<?xml-stylesheet href="chrome://browser/skin/preferences/firedragon.css"?>
+ 
+ <!DOCTYPE html>
+ 
+@@ -211,6 +212,17 @@
+           <label class="category-name" flex="1" data-l10n-id="pane-sync-title3"></label>
+         </richlistitem>
+ 
++        <richlistitem id="category-firedragon"
++                      class="category"
++                      value="paneFiredragon"
++                      helpTopic="prefs-firedragon"
++                      data-l10n-id="category-firedragon"
++                      data-l10n-attrs="tooltiptext"
++                      align="center">
++          <image class="category-icon"/>
++          <label class="category-name" flex="1" data-l10n-id="pane-firedragon-title"></label>
++        </richlistitem>
++
+         <richlistitem id="category-experimental"
+                       class="category"
+                       hidden="true"
+@@ -293,6 +305,7 @@
+ 
+ #include containers.inc.xhtml
+ #include sync.inc.xhtml
++#include firedragon.inc.xhtml
+ #include experimental.inc.xhtml
+ #include moreFromMozilla.inc.xhtml
+         </vbox>
+diff --git a/browser/themes/shared/jar.inc.mn b/browser/themes/shared/jar.inc.mn
+index 8035480df32e..f3b1ac2068c9 100644
+--- a/browser/themes/shared/jar.inc.mn
++++ b/browser/themes/shared/jar.inc.mn
+@@ -113,6 +113,7 @@
+   skin/classic/browser/preferences/category-privacy-security.svg    (../shared/preferences/category-privacy-security.svg)
+   skin/classic/browser/preferences/category-search.svg         (../shared/preferences/category-search.svg)
+   skin/classic/browser/preferences/category-sync.svg           (../shared/preferences/category-sync.svg)
++  skin/classic/browser/preferences/category-firedragon.svg      (../shared/preferences/category-firedragon.svg)
+   skin/classic/browser/preferences/containers.css              (../shared/preferences/containers.css)
+   skin/classic/browser/preferences/containers-dialog.css       (../shared/preferences/containers-dialog.css)
+   skin/classic/browser/preferences/dialog.css                  (../shared/preferences/dialog.css)
+@@ -122,6 +123,7 @@
+   skin/classic/browser/preferences/no-search-bar.svg           (../shared/preferences/no-search-bar.svg)
+   skin/classic/browser/preferences/preferences.css             (../shared/preferences/preferences.css)
+   skin/classic/browser/preferences/privacy.css                 (../shared/preferences/privacy.css)
++  skin/classic/browser/preferences/firedragon.css               (../shared/preferences/firedragon.css)
+   skin/classic/browser/preferences/relay-logo.svg              (../shared/preferences/relay-logo.svg)
+   skin/classic/browser/preferences/search-arrow-indicator.svg  (../shared/preferences/search-arrow-indicator.svg)
+   skin/classic/browser/preferences/search-bar.svg              (../shared/preferences/search-bar.svg)
+diff --git a/browser/themes/shared/preferences/preferences.css b/browser/themes/shared/preferences/preferences.css
+index 668fa2ee4fd6..23090f7aa253 100644
+--- a/browser/themes/shared/preferences/preferences.css
++++ b/browser/themes/shared/preferences/preferences.css
+@@ -217,6 +217,10 @@ checkbox {
+   list-style-image: url("chrome://browser/skin/preferences/category-sync.svg");
+ }
+ 
++#category-firedragon > .category-icon {
++  list-style-image: url("chrome://browser/skin/preferences/category-firedragon.svg");
++}
++
+ #category-experimental > .category-icon {
+   list-style-image: url("chrome://global/skin/icons/experiments.svg");
+ }
