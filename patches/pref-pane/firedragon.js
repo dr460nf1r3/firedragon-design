@@ -29,23 +29,23 @@ Preferences.addAll([
   // XOrigin referrers
   { id: "network.http.referer.XOriginPolicy", type: "int" },
   // Resist fingerprinting
-  { id: "privacy.resistFingerprinting", type: "bool" },
+  //{ id: "privacy.resistFingerprinting", type: "bool" },
   { id: "privacy.resistFingerprinting.letterboxing", type: "bool" },
-  { id: "privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts", type: "bool" },
+  //{ id: "privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts", type: "bool" },
   // WebGL
-  { id: "webgl.disabled", type: "bool" },
+  //{ id: "webgl.disabled", type: "bool" },
   // ocsp hard-fail
   { id: "security.OCSP.require", type: "bool" },
   // Google Safe Browsing
-  { id: "browser.safebrowsing.malware.enabled", type: "bool" },
-  { id: "browser.safebrowsing.phishing.enabled", type: "bool" },
+  //{ id: "browser.safebrowsing.malware.enabled", type: "bool" },
+  //{ id: "browser.safebrowsing.phishing.enabled", type: "bool" },
   { id: "browser.safebrowsing.blockedURIs.enabled", type: "bool" },
   { id: "browser.safebrowsing.provider.google4.gethashURL", type: "string" },
   { id: "browser.safebrowsing.provider.google4.updateURL", type: "string" },
   { id: "browser.safebrowsing.provider.google.gethashURL", type: "string" },
   { id: "browser.safebrowsing.provider.google.updateURL", type: "string" },
   // Google safe browsing check downloads
-  { id: "browser.safebrowsing.downloads.enabled", type: "bool" },
+  //{ id: "browser.safebrowsing.downloads.enabled", type: "bool" },
 ]);
 
 var gFiredragonPane = {
