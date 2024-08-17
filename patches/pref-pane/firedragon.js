@@ -14,104 +14,104 @@ XPCOMUtils.defineLazyGetter(this, "L10n", () => {
 });
 
 Preferences.addAll([
+  // IPv6
+  { id: "network.dns.disableIPv6", type: "bool" },
+  // ocsp hard-fail
+  { id: "security.OCSP.require", type: "bool" },
+  // ocsp hard-fail
+  { id: "identity.fxaccounts.enabled", type: "bool" },
+  // WebGL
+  { id: "webgl.disabled", type: "bool" },
   // Automatically Update Extensions
   { id: "extensions.update.enabled", type: "bool" },
   { id: "extensions.update.autoUpdateDefault", type: "bool" },
-  // Enable firefox sync
-  { id: "identity.fxaccounts.enabled", type: "bool" },
   // Clipboard autocopy/paste
   { id: "clipboard.autocopy", type: "bool" },
   { id: "middlemouse.paste", type: "bool" },
-  // Allow userChrome.css customization
-  { id: "toolkit.legacyUserProfileCustomizations.stylesheets", type: "bool" },
-  // IPv6
-  { id: "network.dns.disableIPv6", type: "bool" },
   // XOrigin referrers
   { id: "network.http.referer.XOriginPolicy", type: "int" },
-  // Resist fingerprinting
-  //{ id: "privacy.resistFingerprinting", type: "bool" },
+  // Harden
   { id: "privacy.resistFingerprinting.letterboxing", type: "bool" },
-  //{ id: "privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts", type: "bool" },
-  // WebGL
-  //{ id: "webgl.disabled", type: "bool" },
-  // ocsp hard-fail
-  { id: "security.OCSP.require", type: "bool" },
   // Google Safe Browsing
-  //{ id: "browser.safebrowsing.malware.enabled", type: "bool" },
+  //{ id: "browser.safebrowsing.malware.enabled", type: "bool" }, // Already loaded
   //{ id: "browser.safebrowsing.phishing.enabled", type: "bool" },
   { id: "browser.safebrowsing.blockedURIs.enabled", type: "bool" },
   { id: "browser.safebrowsing.provider.google4.gethashURL", type: "string" },
   { id: "browser.safebrowsing.provider.google4.updateURL", type: "string" },
   { id: "browser.safebrowsing.provider.google.gethashURL", type: "string" },
   { id: "browser.safebrowsing.provider.google.updateURL", type: "string" },
+  /**** Prefs that require changing a lockPref ****/
   // Google safe browsing check downloads
-  //{ id: "browser.safebrowsing.downloads.enabled", type: "bool" },
+  //{ id: "browser.safebrowsing.downloads.enabled", type: "bool" }, //Also already added
+  { id: "toolkit.legacyUserProfileCustomizations.stylesheets", type: "bool" },
+  // Canvas UI when blocked
+  {
+    id: "privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts",
+    type: "bool",
+  },
 ]);
 
-var gFiredragonPane = {
+var gFireDragonPane = {
   _pane: null,
 
   // called when the document is first parsed
   init() {
-    this._pane = document.getElementById("paneFiredragon");
+    this._pane = document.getElementById("paneFireDragon");
 
     // Set all event listeners on checkboxes
     setBoolSyncListeners(
       "firedragon-extension-update-checkbox",
       ["extensions.update.autoUpdateDefault", "extensions.update.enabled"],
-      [true,                                  true],
-    );
-    setBoolSyncListeners(
-      "firedragon-sync-checkbox",
-      ["identity.fxaccounts.enabled"],
-      [true],
-    );
-    setBoolSyncListeners(
-      "firedragon-autocopy-checkbox",
-      ["clipboard.autocopy", "middlemouse.paste"],
-      [true,                 true],
-    );
-    setBoolSyncListeners(
-      "firedragon-styling-checkbox",
-      ["toolkit.legacyUserProfileCustomizations.stylesheets"],
-      [true],
+      [true,                                  true                       ],
     );
     setBoolSyncListeners(
       "firedragon-ipv6-checkbox",
       ["network.dns.disableIPv6"],
-      [false],
-    );
-    setXOriginPolicySyncListeners(
-      "firedragon-xorigin-ref-checkbox",
-      "network.http.referer.XOriginPolicy",
-      [1, 2],
-      [0]
-    );
-    setBoolSyncListeners(
-      "firedragon-rfp-checkbox",
-      ["privacy.resistFingerprinting"],
-      [true],
-    );
-    setBoolSyncListeners(
-      "firedragon-letterboxing-checkbox",
-      ["privacy.resistFingerprinting.letterboxing"],
-      [true],
-    );
-    setBoolSyncListeners(
-      "firedragon-auto-decline-canvas-checkbox",
-      ["privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts"],
-      [true],
-    );
-    setBoolSyncListeners(
-      "firedragon-webgl-checkbox",
-      ["webgl.disabled"],
-      [false],
+      [false,                   ],
     );
     setBoolSyncListeners(
       "firedragon-ocsp-checkbox",
       ["security.OCSP.require"],
-      [true],
+      [true,                   ],
     );
+    setBoolSyncListeners(
+      "firedragon-sync-checkbox",
+      ["identity.fxaccounts.enabled"],
+      [true,                   ],
+    );
+    setBoolSyncListeners(
+      "firedragon-autocopy-checkbox",
+      ["clipboard.autocopy", "middlemouse.paste"],
+      [true,                 true               ],
+    );
+    setBoolSyncListeners(
+      "firedragon-styling-checkbox",
+      ["toolkit.legacyUserProfileCustomizations.stylesheets"],
+      [true,                                                ],
+    );
+
+    setBoolSyncListeners(
+      "firedragon-webgl-checkbox",
+      ["webgl.disabled"],
+      [false           ],
+    );
+    setBoolSyncListeners(
+      "firedragon-rfp-checkbox",
+      ["privacy.resistFingerprinting"],
+      [true                          ],
+    );
+    setBoolSyncListeners(
+      "firedragon-auto-decline-canvas-checkbox",
+      ["privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts"],
+      [true                                      ],
+    );
+
+    setBoolSyncListeners(
+      "firedragon-letterboxing-checkbox",
+      ["privacy.resistFingerprinting.letterboxing"],
+      [true                                       ],
+    );
+
     setSyncListeners(
       "firedragon-goog-safe-checkbox",
       [
@@ -140,39 +140,37 @@ var gFiredragonPane = {
         "",
         "",
         "",
-      ],
+      ]
     );
-    setBoolSyncListeners(
-      "firedragon-goog-safe-download-checkbox",
-      ["browser.safebrowsing.downloads.enabled"],
-      [true],
+
+    setXOriginPolicySyncListeners(
+      "firedragon-xorigin-ref-checkbox",
+      "network.http.referer.XOriginPolicy",
+      [1, 2],
+      [0]
     );
 
     // Set event listener on open profile directory button
     setEventListener("firedragon-open-profile", "command", openProfileDirectory);
     // Set event listener on open about:config button
-    setEventListener("firedragon-config-link", "command", openAboutConfig);
+    setEventListener("firedragon-config-link", "click", openAboutConfig);
 
     // Notify observers that the UI is now ready
     Services.obs.notifyObservers(window, "firedragon-pane-loaded");
   },
 };
 
-Preferences.get("identity.fxaccounts.enabled").on("change", () => {
-  confirmRestartPrompt(
-    Services.prefs.getBoolPref("identity.fxaccounts.enabled"), // Restart is required to *enable* / *disable* the pref
-    1, // Default Button Index
-    true, // Cancel instead of Revert Button
-    false // No Restart Later button
-  ).then(buttonIndex => {
-    if (buttonIndex == CONFIRM_RESTART_PROMPT_RESTART_NOW) {
-      Services.startup.quit(
-        Ci.nsIAppStartup.eAttemptQuit | Ci.nsIAppStartup.eRestart
-      );
-      return;
-    }
-  });
-});
+function setXOriginPolicySyncListeners(checkboxid, pref, onVals, offVals) {
+  setSyncFromPrefListener(checkboxid, () => onVals.includes(getPref(pref)));
+  setSyncToPrefListener(checkboxid, () =>
+    writeGenericPrefs([pref], [2], [0], document.getElementById(checkboxid).checked)
+  );
+  Preferences.get(pref).on("change", () =>
+    makeMasterCheckboxesReactive(checkboxid, () =>
+      onVals.includes(getPref(pref))
+    )
+  );
+}
 
 function openProfileDirectory() {
   // Get the profile directory.
@@ -190,18 +188,6 @@ function openProfileDirectory() {
 
 function openAboutConfig() {
   window.open("about:config", "_blank");
-}
-
-function setXOriginPolicySyncListeners(checkboxid, pref, onVals, offVals) {
-  setSyncFromPrefListener(checkboxid, () => onVals.includes(getPref(pref)));
-  setSyncToPrefListener(checkboxid, () =>
-    writeGenericPrefs([pref], [2], [0], document.getElementById(checkboxid).checked)
-  );
-  Preferences.get(pref).on("change", () =>
-    makeMasterCheckboxesReactive(checkboxid, () =>
-      onVals.includes(getPref(pref))
-    )
-  );
 }
 
 function setBoolSyncListeners(checkboxid, opts, vals) {
@@ -281,3 +267,19 @@ function writeGenericPrefs(opts, onVals, offVals, changeToOn) {
   }
   return writeArr[0];
 }
+
+Preferences.get("identity.fxaccounts.enabled").on("change", () => {
+  confirmRestartPrompt(
+    Services.prefs.getBoolPref("identity.fxaccounts.enabled"), // Restart is required to *enable* / *disable* the pref
+    1, // Default Button Index
+    true, // Cancel instead of Revert Button
+    false // No Restart Later button
+  ).then(buttonIndex => {
+    if (buttonIndex == CONFIRM_RESTART_PROMPT_RESTART_NOW) {
+      Services.startup.quit(
+        Ci.nsIAppStartup.eAttemptQuit | Ci.nsIAppStartup.eRestart
+      );
+      return;
+    }
+  });
+});

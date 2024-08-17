@@ -4,233 +4,249 @@
 
 <script src="chrome://browser/content/preferences/firedragon.js"/>
 
-<html:template id="template-paneFiredragon">
+<html:template id="template-paneFireDragon">
 
-<hbox class="subcategory" hidden="true" data-category="paneFiredragon">
+<hbox class="subcategory" hidden="true" data-category="paneFireDragon">
   <html:h1 data-l10n-id="firedragon-header"/>
 </hbox>
 
-<groupbox hidden="true" data-category="paneFiredragon">
+<groupbox hidden="true" data-category="paneFireDragon">
   <html:h2 data-l10n-id="firedragon-general-heading"/>
 
   <!-- TEMPLATE FOR A NEW PREFERENCE
-  <checkbox id="firedragon-LABEL-checkbox" data-l10n-id="firedragon-LABEL-checkbox" preference="PREF" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-LABEL-description" data-l10n-id="firedragon-LABEL-description" />
-    <html:label for="firedragon-LABEL-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-LABEL-checkbox" data-l10n-id="firedragon-LABEL-checkbox" preference="PREF" flex="1" />
+    <html:label for="firedragon-LABEL-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-LABEL-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-LABEL-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-LABEL-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="PREF" label="PREF" />
     </vbox>
   </vbox>
   -->
 
-  <checkbox id="firedragon-extension-update-checkbox" data-l10n-id="firedragon-extension-update-checkbox" preference="extensions.update.autoUpdateDefault" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-extension-update-description" data-l10n-id="firedragon-extension-update-description" />
-    <html:label for="firedragon-extension-update-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-extension-update-checkbox" data-l10n-id="firedragon-extension-update-checkbox" preference="extensions.update.autoUpdateDefault" flex="1" />
+    <html:label for="firedragon-extension-update-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-extension-update-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-extension-update-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-extension-update-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="extensions.update.autoUpdateDefault" label="extensions.update.autoUpdateDefault" />
       <checkbox preference="extensions.update.enabled" label="extensions.update.enabled" />
     </vbox>
   </vbox>
 
-  <checkbox id="firedragon-sync-checkbox" data-l10n-id="firedragon-sync-checkbox" preference="identity.fxaccounts.enabled" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-sync-description" data-l10n-id="firedragon-sync-description" />
-    <html:label for="firedragon-sync-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-sync-checkbox" data-l10n-id="firedragon-sync-checkbox" preference="identity.fxaccounts.enabled" flex="1" />
+    <html:label for="firedragon-sync-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-sync-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-sync-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-sync-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="identity.fxaccounts.enabled" label="identity.fxaccounts.enabled" />
     </vbox>
   </vbox>
-
-  <checkbox id="firedragon-autocopy-checkbox" data-l10n-id="firedragon-autocopy-checkbox" preference="clipboard.autocopy" flex="1" />
+  
   <hbox>
-    <description class="indent tip-caption" id="firedragon-autocopy-description" data-l10n-id="firedragon-autocopy-description" />
-    <html:label for="firedragon-autocopy-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-autocopy-checkbox" data-l10n-id="firedragon-autocopy-checkbox" preference="clipboard.autocopy" flex="1" />
+    <html:label for="firedragon-autocopy-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-autocopy-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-autocopy-description" />
       <checkbox preference="clipboard.autocopy" label="clipboard.autocopy" />
       <checkbox preference="middlemouse.paste" label="middlemouse.paste" />
     </vbox>
   </vbox>
 
-  <checkbox id="firedragon-styling-checkbox" data-l10n-id="firedragon-styling-checkbox" preference="toolkit.legacyUserProfileCustomizations.stylesheets" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-styling-description" data-l10n-id="firedragon-styling-description" />
-    <html:label for="firedragon-styling-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-styling-checkbox" data-l10n-id="firedragon-styling-checkbox" preference="toolkit.legacyUserProfileCustomizations.stylesheets" flex="1" />
+    <html:label for="firedragon-styling-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-styling-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-styling-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-styling-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="toolkit.legacyUserProfileCustomizations.stylesheets" label="toolkit.legacyUserProfileCustomizations.stylesheets" />
     </vbox>
   </vbox>
 
 </groupbox>
 
-<groupbox hidden="true" data-category="paneFiredragon">
+<groupbox hidden="true" data-category="paneFireDragon">
   <html:h2 data-l10n-id="firedragon-network-heading" />
 
-  <checkbox id="firedragon-ipv6-checkbox" data-l10n-id="firedragon-ipv6-checkbox" preference="network.dns.disableIPv6" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-ipv6-description" data-l10n-id="firedragon-ipv6-description" />
-    <html:label for="firedragon-ipv6-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-ipv6-checkbox" data-l10n-id="firedragon-ipv6-checkbox" preference="network.dns.disableIPv6" flex="1" />
+    <html:label for="firedragon-ipv6-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-ipv6-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-ipv6-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-ipv6-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="network.dns.disableIPv6" label="network.dns.disableIPv6" />
     </vbox>
   </vbox>
 
 </groupbox>
 
-<groupbox hidden="true" data-category="paneFiredragon">
+<groupbox hidden="true" data-category="paneFireDragon">
   <html:h2 data-l10n-id="firedragon-privacy-heading" />
 
-  <checkbox id="firedragon-xorigin-ref-checkbox" data-l10n-id="firedragon-xorigin-ref-checkbox" preference="network.http.referer.XOriginPolicy" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-xorigin-ref-description" data-l10n-id="firedragon-xorigin-ref-description" />
-    <html:label for="firedragon-xorigin-ref-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-xorigin-ref-checkbox" data-l10n-id="firedragon-xorigin-ref-checkbox" preference="network.http.referer.XOriginPolicy" flex="1" />
+    <html:label for="firedragon-xorigin-ref-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-xorigin-ref-collapse" />
-    <vbox class="firedragon-collapsed">
-      <checkbox preference="network.http.referer.XOriginPolicy" label="network.http.referer.XOriginPolicy" disabled="true" />
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-xorigin-ref-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-xorigin-ref-warning1" class="firedragon-warning" /> </html:div>
+      <checkbox disabled="true" preference="network.http.referer.XOriginPolicy" label="network.http.referer.XOriginPolicy" />
     </vbox>
   </vbox>
 
 </groupbox>
 
-
-<groupbox hidden="true" data-category="paneFiredragon">
+<groupbox hidden="true" data-category="paneFireDragon">
   <html:h2 data-l10n-id="firedragon-broken-heading" />
 
-  <checkbox id="firedragon-rfp-checkbox" data-l10n-id="firedragon-rfp-checkbox" preference="privacy.resistFingerprinting" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-rfp-description" data-l10n-id="firedragon-rfp-description" />
-    <html:label for="firedragon-rfp-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-rfp-checkbox" data-l10n-id="firedragon-rfp-checkbox" preference="privacy.resistFingerprinting" flex="1" />
+    <html:label for="firedragon-rfp-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-rfp-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-rfp-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-rfp-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="privacy.resistFingerprinting" label="privacy.resistFingerprinting" />
     </vbox>
   </vbox>
 
   <vbox class="indent">
 
-    <checkbox id="firedragon-letterboxing-checkbox" data-l10n-id="firedragon-letterboxing-checkbox" preference="privacy.resistFingerprinting.letterboxing" flex="1" />
     <hbox>
-      <description class="indent tip-caption" id="firedragon-letterboxing-description" data-l10n-id="firedragon-letterboxing-description" />
-      <html:label for="firedragon-letterboxing-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+      <checkbox id="firedragon-letterboxing-checkbox" data-l10n-id="firedragon-letterboxing-checkbox" preference="privacy.resistFingerprinting.letterboxing" flex="1" />
+      <html:label for="firedragon-letterboxing-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
     </hbox>
     <vbox class="firedragon-collapse indent">
       <html:input type="checkbox" id="firedragon-letterboxing-collapse" />
-      <vbox class="firedragon-collapsed">
+      <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+        <label data-l10n-id="firedragon-letterboxing-description" />
         <checkbox preference="privacy.resistFingerprinting.letterboxing" label="privacy.resistFingerprinting.letterboxing" />
       </vbox>
     </vbox>
 
-    <checkbox id="firedragon-auto-decline-canvas-checkbox" data-l10n-id="firedragon-auto-decline-canvas-checkbox" preference="privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts" flex="1" />
     <hbox>
-      <description class="indent tip-caption" id="firedragon-auto-decline-canvas-description" data-l10n-id="firedragon-auto-decline-canvas-description" />
-      <html:label for="firedragon-auto-decline-canvas-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+      <checkbox id="firedragon-auto-decline-canvas-checkbox" data-l10n-id="firedragon-auto-decline-canvas-checkbox" preference="privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts" flex="1" />
+      <html:label for="firedragon-auto-decline-canvas-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
     </hbox>
     <vbox class="firedragon-collapse indent">
       <html:input type="checkbox" id="firedragon-auto-decline-canvas-collapse" />
-      <vbox class="firedragon-collapsed">
+      <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+        <label data-l10n-id="firedragon-auto-decline-canvas-description" />
+        <html:div> <label data-l10n-id="firedragon-auto-decline-canvas-warning1" class="firedragon-warning" /> </html:div>
         <checkbox preference="privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts" label="privacy.resistFingerprinting.autoDeclineNoUserInputCanvasPrompts" />
       </vbox>
     </vbox>
 
   </vbox>
 
-  <checkbox id="firedragon-webgl-checkbox" data-l10n-id="firedragon-webgl-checkbox" preference="webgl.disabled" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-webgl-description" data-l10n-id="firedragon-webgl-description" />
-    <html:label for="firedragon-webgl-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-webgl-checkbox" data-l10n-id="firedragon-webgl-checkbox" preference="webgl.disabled" flex="1" />
+    <html:label for="firedragon-webgl-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-webgl-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-webgl-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-webgl-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="webgl.disabled" label="webgl.disabled" />
     </vbox>
   </vbox>
 
+
 </groupbox>
 
-<groupbox hidden="true" data-category="paneFiredragon">
+<groupbox hidden="true" data-category="paneFireDragon">
   <html:h2 data-l10n-id="firedragon-security-heading" />
 
-  <checkbox id="firedragon-ocsp-checkbox" data-l10n-id="firedragon-ocsp-checkbox" preference="security.OCSP.require" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-ocsp-description" data-l10n-id="firedragon-ocsp-description" />
-    <html:label for="firedragon-ocsp-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-ocsp-checkbox" data-l10n-id="firedragon-ocsp-checkbox" preference="security.OCSP.require" flex="1" />
+    <html:label for="firedragon-ocsp-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-ocsp-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-ocsp-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-ocsp-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="security.OCSP.require" label="security.OCSP.require" />
     </vbox>
   </vbox>
 
-  <checkbox id="firedragon-goog-safe-checkbox" data-l10n-id="firedragon-goog-safe-checkbox" preference="browser.safebrowsing.malware.enabled" flex="1" />
   <hbox>
-    <description class="indent tip-caption" id="firedragon-goog-safe-description" data-l10n-id="firedragon-goog-safe-description" />
-    <html:label for="firedragon-goog-safe-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+    <checkbox id="firedragon-goog-safe-checkbox" data-l10n-id="firedragon-goog-safe-checkbox" preference="browser.safebrowsing.malware.enabled" flex="1" />
+    <html:label for="firedragon-goog-safe-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
   </hbox>
   <vbox class="firedragon-collapse indent">
     <html:input type="checkbox" id="firedragon-goog-safe-collapse" />
-    <vbox class="firedragon-collapsed">
+    <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+      <label data-l10n-id="firedragon-goog-safe-description" />
+      <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-goog-safe-warning1" class="firedragon-warning" /> </html:div>
       <checkbox preference="browser.safebrowsing.malware.enabled" label="browser.safebrowsing.malware.enabled" />
       <checkbox preference="browser.safebrowsing.phishing.enabled" label="browser.safebrowsing.phishing.enabled" />
       <checkbox preference="browser.safebrowsing.blockedURIs.enabled" label="browser.safebrowsing.blockedURIs.enabled" />
-      <checkbox preference="browser.safebrowsing.provider.google4.gethashURL" label="browser.safebrowsing.provider.google4.gethashURL" />
-      <checkbox preference="browser.safebrowsing.provider.google4.updateURL" label="browser.safebrowsing.provider.google4.updateURL" />
-      <checkbox preference="browser.safebrowsing.provider.google.gethashURL" label="browser.safebrowsing.provider.google.gethashURL" />
-      <checkbox preference="browser.safebrowsing.provider.google.updateURL" label="browser.safebrowsing.provider.google.updateURL" />
+      <checkbox preference="browser.safebrowsing.provider.google4.gethashURL" label="browser.safebrowsing.provider.google4.gethashURL" id="firedragon-goog-safe-hash4"/>
+      <checkbox preference="browser.safebrowsing.provider.google4.updateURL" label="browser.safebrowsing.provider.google4.updateURL" id="firedragon-goog-safe-up4"/>
+      <checkbox preference="browser.safebrowsing.provider.google.gethashURL" label="browser.safebrowsing.provider.google.gethashURL" id="firedragon-goog-safe-hash"/>
+      <checkbox preference="browser.safebrowsing.provider.google.updateURL" label="browser.safebrowsing.provider.google.updateURL" id="firedragon-goog-safe-up"/>
     </vbox>
   </vbox>
 
   <vbox class="indent">
-
-    <checkbox id="firedragon-goog-safe-download-checkbox" data-l10n-id="firedragon-goog-safe-download-checkbox" preference="browser.safebrowsing.downloads.enabled" flex="1" />
     <hbox>
-      <description class="indent tip-caption" id="firedragon-goog-safe-download-description" data-l10n-id="firedragon-goog-safe-download-description" />
-      <html:label for="firedragon-goog-safe-download-collapse" class="firedragon-collapse-button" pack="end"><image src="chrome://global/skin/icons/help.svg" /></html:label>
+      <checkbox id="firedragon-goog-safe-download-checkbox" data-l10n-id="firedragon-goog-safe-download-checkbox" preference="browser.safebrowsing.downloads.enabled" flex="1" />
+      <html:label for="firedragon-goog-safe-download-collapse" class="sidebar-footer-link" pack="end"> <image class="sidebar-footer-icon help-icon"/> </html:label>
     </hbox>
     <vbox class="firedragon-collapse indent">
       <html:input type="checkbox" id="firedragon-goog-safe-download-collapse" />
-      <vbox class="firedragon-collapsed">
+      <vbox class="firedragon-collapsed tracking-protection-ui content-blocking-category">
+        <label data-l10n-id="firedragon-goog-safe-download-description" />
+        <html:div> <image src="chrome://browser/skin/warning.svg" /> <label data-l10n-id="firedragon-goog-safe-download-warning1" class="firedragon-warning" /> </html:div>
         <checkbox preference="browser.safebrowsing.downloads.enabled" label="browser.safebrowsing.downloads.enabled" />
       </vbox>
     </vbox>
-
   </vbox>
 
 </groupbox>
 
-<hbox class="subcategory" hidden="true" data-category="paneFiredragon">
+<hbox class="subcategory" hidden="true" data-category="paneFireDragon">
     <html:h1 data-l10n-id="firedragon-footer"/>
 </hbox>
 
-<groupbox data-category="paneFiredragon" hidden="true">
+<groupbox data-category="paneFireDragon" hidden="true">
   <vbox align="start">
     <hbox>
-      <button id="firedragon-config-link" class="firedragon-button" is="highlightable-button" flex="1" image="chrome://browser/skin/ion.svg" data-l10n-id="firedragon-config-link" />
-      <button id="firedragon-open-profile" class="firedragon-button" is="highlightable-button" flex="1" image="chrome://browser/skin/open.svg" data-l10n-id="firedragon-open-profile" />
+      <button id="firedragon-config-link" is="highlightable-button" flex="1">
+        <image class="firedragon-button-icon" src="chrome://browser/skin/ion.svg" /> <!-- TODO not the typical way a picture is defined I think, and also we should copy the svg file in case they change it -->
+        <label data-l10n-id="firedragon-config-link"></label>
+      </button>
+      <button id="firedragon-open-profile" is="highlightable-button" flex="1">
+        <image class="firedragon-button-icon" src="chrome://browser/skin/open.svg" />
+        <label data-l10n-id="firedragon-open-profile"></label>
+      </button>
     </hbox>
   </vbox>
 </groupbox>

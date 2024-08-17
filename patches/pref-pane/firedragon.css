@@ -1,34 +1,20 @@
-.firedragon-collapse-button {
-	display: flex;
-	align-items: center;
-	margin-left: auto;
-	border: 1px solid var(--in-content-button-border-color);
-	border-radius: 4px;
-}
-.firedragon-collapse-button:hover {
-	background-color: var(--in-content-button-background-hover);
-	color: var(--in-content-button-text-color-hover);
-	border-color: var(--in-content-button-border-color-hover);
-}
-.firedragon-collapse-button:focus-visible {
-	outline: var(--in-content-focus-outline);
-	outline-offset: var(--in-content-focus-outline-inset);
-}
-.firedragon-collapse-button > image {
-	margin-inline: 10px;
-	-moz-context-properties: fill, fill-opacity;
-	fill: currentColor;
-}
 .firedragon-collapse > input {
 	display: none;
 }
 .firedragon-collapse > input ~ .firedragon-collapsed {
 	display: none;
+	/* max-height: 0; */
+	transition: max-height 0.25s ease-in-out;
 }
 .firedragon-collapse > input:checked ~ .firedragon-collapsed {
 	display: block;
+	/* max-height: 20rem; */
 }
-.firedragon-button .button-icon {
+.firedragon-warning {
+	display: inline;
+	font-size: 0.8em;
+}
+.firedragon-button-icon {
 	width: 16px;
 	height: 16px;
 	margin-right: 8px;
